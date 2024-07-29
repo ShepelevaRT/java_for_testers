@@ -19,11 +19,12 @@ public class Geometry {
         return a * b;
     }
 
-    static void printSquareArea(double side) {
-        System.out.println("Площадь квадрата со стороной " + side + " = " + squareArea(side));
+    private static void printSquareArea(double a) {
+        System.out.println("Площадь квадрата со стороной " + a + " = " + squareArea(a));
     }
 
     private static double squareArea(double a) {
         return a * a;
     }
 }
+
