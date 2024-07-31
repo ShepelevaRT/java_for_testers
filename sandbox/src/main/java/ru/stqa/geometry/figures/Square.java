@@ -1,12 +1,19 @@
 package ru.stqa.geometry.figures;
 
 public class Square {
-    public static void printSquareArea(double a) {
-        String text = String.format("Площадь квадрата со стороной %f = %f", a, squareArea(a));
-        System.out.println(text);
+
+    private double a;
+
+    public Square(double a) {
+        this.a = a;
     }
 
-    public static double squareArea(double a) {
-        return a * a;
+    public double squareArea() {
+        return this.a * this.a;
+    }
+
+    public static void printSquareArea(Square s) {
+        String text = String.format("Площадь квадрата со стороной %f = %f", s.a, s.squareArea());
+        System.out.println(text);
     }
 }

@@ -7,6 +7,6 @@ public class PerimeterTests {
 
     @Test
     void canCalculatePerimeter() {
-        Assertions.assertEquals(32.0, Triangle.trianglePerimeter(10.0, 10.0, 12.0));
+        Assertions.assertEquals(32.0, new Triangle(10.0, 10.0, 12.0).trianglePerimeter());
     }
 }

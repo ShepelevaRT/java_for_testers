@@ -2,14 +2,18 @@ package ru.stqa.geometry.figures;
 
 public class Circle {
 
-    public static void printCircleArea(double r) {
-        String text = String.format("Площадь круга радиусом %f = %f", r, circleArea(r));
-        System.out.println(text);
+    private double r;
+
+    public Circle(double r) {
+        this.r = r;
     }
 
-    public static double circleArea(double r) {
+    public double circleArea() {
         return Math.PI * r * r;
     }
 
-
+    public static void printCircleArea(Circle c) {
+        String text = String.format("Площадь круга радиусом %f = %f", c.r, c.circleArea());
+        System.out.println(text);
+    }
 }

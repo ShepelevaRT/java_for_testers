@@ -1,12 +1,21 @@
 package ru.stqa.geometry.figures;
 
 public class Rectangle {
-    public static void printRectangleArea(double a, double b) {
-        String text = String.format("Площадь прямоугольника со сторонами %f и %f = %f", a, b, rectangleArea(a, b));
-        System.out.println(text);
+
+    private double a;
+    private double b;
+
+    public Rectangle(double a, double b) {
+        this.a = a;
+        this.b = b;
     }
 
-    public static double rectangleArea(double a, double b) {
-        return a * b;
+    public double rectangleArea() {
+        return this.a * this.b;
+    }
+
+    public static void printRectangleArea(Rectangle s) {
+        String text = String.format("Площадь прямоугольника со сторонами %f и %f = %f", s.a, s.b, s.rectangleArea());
+        System.out.println(text);
     }
 }
