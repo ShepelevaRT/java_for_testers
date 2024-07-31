@@ -1,12 +1,6 @@
 package ru.stqa.geometry.figures;
 
-public class Circle {
-
-    private double r;
-
-    public Circle(double r) {
-        this.r = r;
-    }
+public record Circle(double r) {
 
     public double circleArea() {
         return Math.PI * r * r;
