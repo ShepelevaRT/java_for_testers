@@ -1,5 +1,6 @@
 package ru.stqa.geometry;
 
+import ru.stqa.geometry.figures.Circle;
 import ru.stqa.geometry.figures.Rectangle;
 import ru.stqa.geometry.figures.Square;
 import ru.stqa.geometry.figures.Triangle;
@@ -15,6 +16,8 @@ public class Geometry {
 
         Triangle.printTrianglePerimeter(10.0, 10.0, 12.0);
         Triangle.printTriangleArea(10.0, 10.0, 12.0);
+
+        Circle.printCircleArea(5.0);
 
     }
 

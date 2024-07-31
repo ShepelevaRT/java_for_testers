@@ -8,7 +8,7 @@ public class Triangle {
         System.out.println(text);
     }
 
-    private static double trianglePerimeter(double a, double b, double c) {
+    public static double trianglePerimeter(double a, double b, double c) {
         return a + b + c;
     }
 
@@ -17,8 +17,8 @@ public class Triangle {
         System.out.println(text);
     }
 
-    private static double triangleArea(double a, double b, double c) {
-        var p = trianglePerimeter(a,b,c);
+    public static double triangleArea(double a, double b, double c) {
+        var p = trianglePerimeter(a,b,c) / 2.0;
         return sqrt(p * (p - a) * (p - b) * (p - c));
     }
 }
