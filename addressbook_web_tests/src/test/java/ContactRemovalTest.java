@@ -5,8 +5,8 @@ public class ContactRemovalTest extends TestBase{
 
     @Test
     public void canRemoveContact() {
-        if(!isContactPresent()) {
-            createContact(
+        if(!app.isContactPresent()) {
+            app.createContact(
                     new ContactData("firstname",
                             "middlename",
                             "lastname",
@@ -24,6 +24,6 @@ public class ContactRemovalTest extends TestBase{
                             "April",
                             "2024"));
         }
-        removeContact();
+        app.removeContact();
     }
 }

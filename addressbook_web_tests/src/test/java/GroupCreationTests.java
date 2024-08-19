@@ -5,24 +5,24 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void canCreateGroup() {
-        openGroupsPage();
-        createGroup(new GroupData("name", "header", "footer"));
+        app.openGroupsPage();
+        app.createGroup(new GroupData("name", "header", "footer"));
 
     }
 
     @Test
     public void canCreateGroupWithEmptyName() {
-        openGroupsPage();
-        createGroup(new GroupData());
+        app.openGroupsPage();
+        app.createGroup(new GroupData());
 
     }
 
     @Test
     public void canCreateGroupWithNameOnly() {
-        openGroupsPage();
+        app.openGroupsPage();
         var emptyGroup = new GroupData();
         var groupWithName = emptyGroup.withName("some name");
-        createGroup(groupWithName);
+        app.createGroup(groupWithName);
 
     }
 }
