@@ -1,7 +1,7 @@
-import model.ContactData;
+package tests;
+
+import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class TestBase {
 

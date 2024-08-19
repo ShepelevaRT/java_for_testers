@@ -1,3 +1,5 @@
+package tests;
+
 import model.ContactData;
 import org.junit.jupiter.api.Test;
 
