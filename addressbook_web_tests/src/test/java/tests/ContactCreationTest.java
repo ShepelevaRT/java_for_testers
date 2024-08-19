@@ -33,26 +33,26 @@ public class ContactCreationTest extends TestBase {
 
     @Test
     public void canCreateContactWithFirstnameOnly() {
-      app.contacts().createContact(new ContactData().withFirstname("Rozaliia"));
+        app.contacts().createContact(new ContactData().withFirstname("Rozaliia"));
     }
 
-  @Test
-  public void canCreateContactWithLastnameOnly() {
-    app.contacts().createContact(new ContactData().withLastname("Shepeleva"));
-  }
+    @Test
+    public void canCreateContactWithLastnameOnly() {
+        app.contacts().createContact(new ContactData().withLastname("Shepeleva"));
+    }
 
-  @Test
-  public void canCreateContactWithAddressOnly() {
-    app.contacts().createContact(new ContactData().withAddress("Ufa city"));
-  }
+    @Test
+    public void canCreateContactWithAddressOnly() {
+        app.contacts().createContact(new ContactData().withAddress("Ufa city"));
+    }
 
-  @Test
-  public void canCreateContactWithEmailOnly() {
-    app.contacts().createContact(new ContactData().withEmail("rt.mail@gmail.com"));
-  }
+    @Test
+    public void canCreateContactWithEmailOnly() {
+        app.contacts().createContact(new ContactData().withEmail("rt.mail@gmail.com"));
+    }
 
-  @Test
-  public void canCreateContactWithHomeNumberOnly() {
-    app.contacts().createContact(new ContactData().withHome("89999050055"));
-  }
+    @Test
+    public void canCreateContactWithHomeNumberOnly() {
+        app.contacts().createContact(new ContactData().withHome("89999050055"));
+    }
 }

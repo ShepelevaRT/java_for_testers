@@ -3,11 +3,11 @@ package tests;
 import model.ContactData;
 import org.junit.jupiter.api.Test;
 
-public class ContactRemovalTest extends TestBase{
+public class ContactRemovalTest extends TestBase {
 
     @Test
     public void canRemoveContact() {
-        if(!app.contacts().isContactPresent()) {
+        if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(
                     new ContactData("firstname",
                             "middlename",
