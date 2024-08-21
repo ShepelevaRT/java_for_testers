@@ -15,11 +15,11 @@ public record ContactData(String firstname, String middlename, String lastname, 
                 "",
                 "",
                 "",
+                "-",
+                "-",
                 "",
-                "",
-                "",
-                "",
-                "",
+                "-",
+                "-",
                 "");
     }
 
