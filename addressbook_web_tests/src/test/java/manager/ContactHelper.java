@@ -4,13 +4,10 @@ import model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class ContactHelper {
-
-    public final ApplicationManager manager;
+public class ContactHelper extends HelperBase {
 
     public ContactHelper(ApplicationManager manager) {
-
-        this.manager = manager;
+        super(manager);
     }
 
     public void createContact(ContactData contact) {
@@ -90,16 +87,7 @@ public class ContactHelper {
     }
 
     private void selectContact() {
-       click(By.name("selected[]"));
+        click(By.name("selected[]"));
     }
 
-    private void type(By locator, String text) {
-        click(locator);
-        manager.driver.findElement(locator).clear();
-        manager.driver.findElement(locator).sendKeys(text);
-    }
-
-    private void click(By locator) {
-        manager.driver.findElement(locator).click();
-    }
 }
