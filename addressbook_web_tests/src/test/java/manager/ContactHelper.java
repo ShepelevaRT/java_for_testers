@@ -36,11 +36,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contact.home());
         type(By.name("email"), contact.email());
         type(By.name("homepage"), contact.homepage());
-        dropdownClick(By.name("bday"), contact.bday());
-        dropdownClick(By.name("bmonth"), contact.bmonth());
+        dropdownClick(By.xpath("//select[@name='bday']"), contact.bday());
+        dropdownClick(By.xpath("//select[@name='bmonth']"), contact.bmonth());
         type(By.name("byear"), contact.byear());
-        dropdownClick(By.name("aday"), contact.aday());
-        dropdownClick(By.name("amonth"), contact.amonth());
+        dropdownClick(By.xpath("//select[@name='aday']"), contact.aday());
+        dropdownClick(By.xpath("//select[@name='amonth']"), contact.amonth());
         type(By.name("ayear"), contact.ayear());
     }
 
