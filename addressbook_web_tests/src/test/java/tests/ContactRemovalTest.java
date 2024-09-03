@@ -49,7 +49,7 @@ public class ContactRemovalTest extends TestBase {
                             "April",
                             "1993",
                             "16",
-                            "April",
+                            "May",
                             "2024"));
         }
         app.contacts().removeAllContact();

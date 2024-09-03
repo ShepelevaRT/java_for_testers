@@ -1,13 +1,23 @@
 package tests;
 
 import model.ContactData;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactCreationTest extends TestBase {
 
-    @Test
-    public void canCreateContact() {
-        app.contacts().createContact(
+    public static List<ContactData> contactProvider() {
+        var result = new ArrayList<ContactData>(List.of(
+                new ContactData(),
+                new ContactData().withFirstname("Rozaliia"),
+                new ContactData().withLastname("Shepeleva"),
+                new ContactData().withAddress("Ufa city"),
+                new ContactData().withEmail("rt.mail@gmail.com"),
+                new ContactData().withHome("89999050055"),
                 new ContactData("firstname",
                         "middlename",
                         "lastname",
@@ -22,37 +32,37 @@ public class ContactCreationTest extends TestBase {
                         "April",
                         "1993",
                         "16",
-                        "April",
-                        "2024"));
+                        "May",
+                        "2024")));
+        for (int i = 0; i < 5; i++) {
+            result.add(new ContactData(
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomString(i * 5),
+                    randomIntDay(),
+                    randomIntMonth(),
+                    randomIntYear(),
+                    randomIntDay(),
+                    randomIntMonth(),
+                    randomIntYear()
+            ));
+        }
+        return result;
     }
 
-    @Test
-    public void canCreateContactWithEmptyName() {
-        app.contacts().createContact(new ContactData());
-    }
-
-    @Test
-    public void canCreateContactWithFirstnameOnly() {
-        app.contacts().createContact(new ContactData().withFirstname("Rozaliia"));
-    }
-
-    @Test
-    public void canCreateContactWithLastnameOnly() {
-        app.contacts().createContact(new ContactData().withLastname("Shepeleva"));
-    }
-
-    @Test
-    public void canCreateContactWithAddressOnly() {
-        app.contacts().createContact(new ContactData().withAddress("Ufa city"));
-    }
-
-    @Test
-    public void canCreateContactWithEmailOnly() {
-        app.contacts().createContact(new ContactData().withEmail("rt.mail@gmail.com"));
-    }
-
-    @Test
-    public void canCreateContactWithHomeNumberOnly() {
-        app.contacts().createContact(new ContactData().withHome("89999050055"));
+    @ParameterizedTest
+    @MethodSource("contactProvider")
+    public void canCreateMultipleContact(ContactData contact) {
+        int contactCount = app.contacts().getCount();
+        app.contacts().createContact(contact);
+        int newContactCount = app.contacts().getCount();
+        Assertions.assertEquals(contactCount + 1, newContactCount);
     }
 }

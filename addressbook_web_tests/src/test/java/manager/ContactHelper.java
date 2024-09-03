@@ -39,17 +39,17 @@ public class ContactHelper extends HelperBase {
         dropdownClick(By.name("bday"), contact.bday());
         dropdownClick(By.name("bmonth"), contact.bmonth());
         type(By.name("byear"), contact.byear());
-        dropdownClick(By.name("aday"), contact.aday());
-        dropdownClick(By.name("amonth"), contact.amonth());
+        dropdownClick(By.name("aday"), contact.bday());
+        dropdownClick(By.name("amonth"), contact.bmonth());
         type(By.name("ayear"), contact.ayear());
     }
 
     private void dropdownClick(By locator, String text) {
         click(locator);
-        {
-            WebElement dropdown = manager.driver.findElement(locator);
-            dropdown.findElement(By.xpath("//option[. = '" + text + "']")).click();
-        }
+        WebElement dropdown = manager.driver.findElement(locator);
+        dropdown.findElement(By.xpath("//option[. = '" + text + "']")).click();
+        System.out.println(locator);
+        System.out.println(text);
     }
 
     public void removeContact() {
