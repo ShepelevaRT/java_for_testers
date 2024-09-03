@@ -11,29 +11,44 @@ import java.util.List;
 public class ContactCreationTest extends TestBase {
 
     public static List<ContactData> contactProvider() {
-        var result = new ArrayList<ContactData>(List.of(
-                new ContactData(),
-                new ContactData().withFirstname("Rozaliia"),
-                new ContactData().withLastname("Shepeleva"),
-                new ContactData().withAddress("Ufa city"),
-                new ContactData().withEmail("rt.mail@gmail.com"),
-                new ContactData().withHome("89999050055"),
-                new ContactData("firstname",
-                        "middlename",
-                        "lastname",
-                        "nickname",
-                        "title",
-                        "company",
-                        "address",
-                        "home",
-                        "email",
-                        "homepage",
-                        "19",
-                        "April",
-                        "1993",
-                        "16",
-                        "May",
-                        "2024")));
+        var result = new ArrayList<ContactData>();
+
+        for (var firstname : List.of("", "firstname")) {
+            for (var middlename : List.of("", "middlename")) {
+                for (var lastname : List.of("", "lastname")) {
+                    for (var nickname : List.of( "nickname")) {
+                        for (var title : List.of( "title")) {
+                            for (var company : List.of( "company")) {
+                                for (var address : List.of( "address")) {
+                                    for (var home : List.of( "home")) {
+                                        for (var email : List.of( "email")) {
+                                            for (var homepage : List.of( "homepage")) {
+                                                for (var bday : List.of("19")) {
+                                                    for (var bmonth : List.of( "April")) {
+                                                        for (var byear : List.of( "1993")) {
+                                                            for (var aday : List.of( "16")) {
+                                                                for (var amonth : List.of( "May")) {
+                                                                    for (var ayear : List.of( "2024")) {
+                                                                    result.add(new ContactData(
+                                                                            firstname,
+                                                                            middlename,
+                                                                            lastname,
+                                                                            nickname,
+                                                                            title,
+                                                                            company,
+                                                                            address,
+                                                                            home,
+                                                                            email,
+                                                                            homepage,
+                                                                            bday,
+                                                                            bmonth,
+                                                                            byear,
+                                                                            aday,
+                                                                            amonth,
+                                                                            ayear
+                                                                            ));
+                                                                    }}}}}}}}}}}}}}}}
+
         for (int i = 0; i < 5; i++) {
             result.add(new ContactData(
                     randomString(i * 5),
