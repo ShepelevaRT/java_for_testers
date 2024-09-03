@@ -20,9 +20,9 @@ public class GroupHelper extends HelperBase {
         returnToGroupsPage();
     }
 
-    public void modifyGroup(GroupData modifiedGroup) {
+    public void modifyGroup(GroupData group, GroupData modifiedGroup) {
         openGroupsPage(); // открыть страницу со списком групп
-        selectGroup(null); // выбрать группу, отметить галочкой
+        selectGroup(group); // выбрать группу, отметить галочкой
         initGroupModification(); // нажать кнопку модификации
         fillGroupForm(modifiedGroup); // заполнить форму данными, которые содержатся в объекте, переданном в качестве параметра
         submitGroupModification(); // сохраняем форму
