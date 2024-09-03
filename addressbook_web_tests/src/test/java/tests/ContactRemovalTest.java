@@ -28,7 +28,11 @@ public class ContactRemovalTest extends TestBase {
                             "April",
                             "2024"));
         }
+
+        int contactCount = app.contacts().getCount();
         app.contacts().removeContact();
+        int newContactCount = app.contacts().getCount();
+        Assertions.assertEquals(contactCount - 1, newContactCount);
     }
 
     @Test

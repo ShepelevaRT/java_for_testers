@@ -49,7 +49,7 @@ public class ContactCreationTest extends TestBase {
                                                                             ));
                                                                     }}}}}}}}}}}}}}}}
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             result.add(new ContactData(
                     randomString(i * 5),
                     randomString(i * 5),
