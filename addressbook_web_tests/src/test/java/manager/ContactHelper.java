@@ -4,6 +4,9 @@ import model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactHelper extends HelperBase {
 
     public ContactHelper(ApplicationManager manager) {
@@ -18,7 +21,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void modifyContact(ContactData modifiedContact) {
-        selectContact();
+        selectContact(null);
         initContactModification();
         fillContactForm(modifiedContact);
         submitContactModification();
@@ -50,8 +53,8 @@ public class ContactHelper extends HelperBase {
         dropdown.findElement(By.xpath("//option[. = '" + text + "']")).click();
     }
 
-    public void removeContact() {
-        selectContact();
+    public void removeContact(ContactData contact) {
+        selectContact(contact);
         removeSelectedContacts();
         returnToContactPage();
     }
@@ -84,8 +87,8 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//img[@alt=\'Edit\']"));
     }
 
-    private void selectContact() {
-        click(By.name("selected[]"));
+    private void selectContact(ContactData contact) {
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
     public void removeAllContact() {
@@ -104,5 +107,38 @@ public class ContactHelper extends HelperBase {
 
     public int getCount() {
         return manager.driver.findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getList() {
+        var contacts = new ArrayList<ContactData>();
+        var main_locators = manager.driver.findElements(By.cssSelector("tr:not(:first-child)"));
+
+        for (var locator : main_locators) {
+            var lastname = locator.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            var firstname =  locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            var checkbox_locator = locator.findElement(By.name("selected[]"));
+            var id = checkbox_locator.getAttribute("value");
+
+            contacts.add(new ContactData()
+                    .withId(id)
+                    .withFirstname(firstname)
+                    .withMiddlename("")
+                    .withLastname(lastname)
+                    .withNickname("")
+                    .withTitle("")
+                    .withCompany("")
+                    .withAddress("")
+                    .withHome("")
+                    .withEmail("")
+                    .withHomepage("")
+                    .withBday("")
+                    .withBmonth("-")
+                    .withByear("")
+                    .withAday("")
+                    .withAmonth("-")
+                    .withAyear(""));
+        }
+
+        return contacts;
     }
 }

@@ -16,58 +16,72 @@ public class ContactCreationTest extends TestBase {
         for (var firstname : List.of("", "firstname")) {
             for (var middlename : List.of("", "middlename")) {
                 for (var lastname : List.of("", "lastname")) {
-                    for (var nickname : List.of( "nickname")) {
-                        for (var title : List.of( "title")) {
-                            for (var company : List.of( "company")) {
-                                for (var address : List.of( "address")) {
-                                    for (var home : List.of( "home")) {
-                                        for (var email : List.of( "email")) {
-                                            for (var homepage : List.of( "homepage")) {
+                    for (var nickname : List.of("nickname")) {
+                        for (var title : List.of("title")) {
+                            for (var company : List.of("company")) {
+                                for (var address : List.of("address")) {
+                                    for (var home : List.of("home")) {
+                                        for (var email : List.of("email")) {
+                                            for (var homepage : List.of("homepage")) {
                                                 for (var bday : List.of("19")) {
-                                                    for (var bmonth : List.of( "April")) {
-                                                        for (var byear : List.of( "1993")) {
-                                                            for (var aday : List.of( "16")) {
-                                                                for (var amonth : List.of( "May")) {
-                                                                    for (var ayear : List.of( "2024")) {
-                                                                    result.add(new ContactData(
-                                                                            firstname,
-                                                                            middlename,
-                                                                            lastname,
-                                                                            nickname,
-                                                                            title,
-                                                                            company,
-                                                                            address,
-                                                                            home,
-                                                                            email,
-                                                                            homepage,
-                                                                            bday,
-                                                                            bmonth,
-                                                                            byear,
-                                                                            aday,
-                                                                            amonth,
-                                                                            ayear
-                                                                            ));
-                                                                    }}}}}}}}}}}}}}}}
-
+                                                    for (var bmonth : List.of("April")) {
+                                                        for (var byear : List.of("1993")) {
+                                                            for (var aday : List.of("16")) {
+                                                                for (var amonth : List.of("May")) {
+                                                                    for (var ayear : List.of("2024")) {
+                                                                        result.add(new ContactData()
+                                                                                .withFirstname(firstname)
+                                                                                .withMiddlename(middlename)
+                                                                                .withLastname(lastname)
+                                                                                .withNickname(nickname)
+                                                                                .withTitle(title)
+                                                                                .withCompany(company)
+                                                                                .withAddress(address)
+                                                                                .withHome(home)
+                                                                                .withEmail(email)
+                                                                                .withHomepage(homepage)
+                                                                                .withBday(bday)
+                                                                                .withBmonth(bmonth)
+                                                                                .withByear(byear)
+                                                                                .withAday(aday)
+                                                                                .withAmonth(amonth)
+                                                                                .withAyear(ayear)
+                                                                        );
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         for (int i = 0; i < 2; i++) {
-            result.add(new ContactData(
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomString(i * 5),
-                    randomIntDay(),
-                    randomIntMonth(),
-                    randomIntYear(),
-                    randomIntDay(),
-                    randomIntMonth(),
-                    randomIntYear()
-            ));
+            result.add(new ContactData()
+                    .withFirstname(randomString(i * 5))
+                    .withMiddlename(randomString(i * 5))
+                    .withLastname(randomString(i * 5))
+                    .withNickname(randomString(i * 5))
+                    .withTitle(randomString(i * 5))
+                    .withCompany(randomString(i * 5))
+                    .withAddress(randomString(i * 5))
+                    .withHome(randomString(i * 5))
+                    .withEmail(randomString(i * 5))
+                    .withHomepage(randomString(i * 5))
+                    .withBday(randomIntDay())
+                    .withBmonth(randomIntMonth())
+                    .withByear(randomIntYear())
+                    .withAday(randomIntDay())
+                    .withAmonth(randomIntMonth())
+                    .withAyear(randomIntYear())
+            );
         }
         return result;
     }
