@@ -20,8 +20,8 @@ public class ContactHelper extends HelperBase {
         returnToContactPage();
     }
 
-    public void modifyContact(ContactData modifiedContact) {
-        selectContact(null);
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        selectContact(contact);
         initContactModification();
         fillContactForm(modifiedContact);
         submitContactModification();
@@ -131,10 +131,10 @@ public class ContactHelper extends HelperBase {
                     .withHome("")
                     .withEmail("")
                     .withHomepage("")
-                    .withBday("")
+                    .withBday("-")
                     .withBmonth("-")
                     .withByear("")
-                    .withAday("")
+                    .withAday("-")
                     .withAmonth("-")
                     .withAyear(""));
         }

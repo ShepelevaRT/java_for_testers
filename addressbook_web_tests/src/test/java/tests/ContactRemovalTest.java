@@ -14,22 +14,23 @@ public class ContactRemovalTest extends TestBase {
     public void canRemoveContact() {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(
-                    new ContactData("", "firstname",
-                            "middlename",
-                            "lastname",
-                            "nickname",
-                            "title",
-                            "company",
-                            "address",
-                            "home",
-                            "email",
-                            "homepage",
-                            "19",
-                            "April",
-                            "1993",
-                            "16",
-                            "April",
-                            "2024"));
+                    new ContactData("",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "-",
+                            "-",
+                            "",
+                            "-",
+                            "-",
+                            ""));
         }
 
         // int contactCount = app.contacts().getCount();
@@ -41,29 +42,30 @@ public class ContactRemovalTest extends TestBase {
         var expectedList = new ArrayList<>(oldContact);
         expectedList.remove(index);
         // int newContactCount = app.contacts().getCount();
-         Assertions.assertEquals(newContact, expectedList);
+        Assertions.assertEquals(newContact, expectedList);
     }
 
     @Test
     void canRemoveAllContactsAtOnce() {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(
-                    new ContactData("", "firstname",
-                            "middlename",
-                            "lastname",
-                            "nickname",
-                            "title",
-                            "company",
-                            "address",
-                            "home",
-                            "email",
-                            "homepage",
-                            "19",
-                            "April",
-                            "1993",
-                            "16",
-                            "May",
-                            "2024"));
+                    new ContactData("",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "-",
+                            "-",
+                            "",
+                            "-",
+                            "-",
+                            ""));
         }
         app.contacts().removeAllContact();
         Assertions.assertEquals(0, app.contacts().getCount());
