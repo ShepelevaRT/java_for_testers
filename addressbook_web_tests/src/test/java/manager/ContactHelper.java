@@ -20,9 +20,9 @@ public class ContactHelper extends HelperBase {
         returnToContactPage();
     }
 
-    public void modifyContact(ContactData contact, ContactData modifiedContact) {
+    public void modifyContact(ContactData contact, ContactData modifiedContact, int index) {
         selectContact(contact);
-        initContactModification();
+        initContactModification(index);
         fillContactForm(modifiedContact);
         submitContactModification();
         returnToContactPage();
@@ -83,8 +83,9 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    private void initContactModification() {
-        click(By.xpath("//img[@alt=\'Edit\']"));
+    private void initContactModification(int index) {
+        int teg_index = index + 2;
+        click(By.xpath("//tr[" + teg_index + "]/td[8]/a/img[@alt='Edit']"));
     }
 
     private void selectContact(ContactData contact) {
@@ -122,21 +123,7 @@ public class ContactHelper extends HelperBase {
             contacts.add(new ContactData()
                     .withId(id)
                     .withFirstname(firstname)
-                    .withMiddlename("")
-                    .withLastname(lastname)
-                    .withNickname("")
-                    .withTitle("")
-                    .withCompany("")
-                    .withAddress("")
-                    .withHome("")
-                    .withEmail("")
-                    .withHomepage("")
-                    .withBday("-")
-                    .withBmonth("-")
-                    .withByear("")
-                    .withAday("-")
-                    .withAmonth("-")
-                    .withAyear(""));
+                    .withLastname(lastname));
         }
 
         return contacts;
