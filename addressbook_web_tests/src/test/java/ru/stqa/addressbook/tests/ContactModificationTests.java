@@ -19,7 +19,7 @@ public class ContactModificationTests extends TestBase {
                             "",
                             "",
                             "",
-                            "",
+                            "src/test/resources/images/avatar.png",
                             "",
                             "",
                             "",
