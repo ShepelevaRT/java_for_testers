@@ -125,7 +125,6 @@ public class ContactHelper extends HelperBase {
                     .withFirstname(firstname)
                     .withLastname(lastname));
         }
-
         return contacts;
     }
 }
