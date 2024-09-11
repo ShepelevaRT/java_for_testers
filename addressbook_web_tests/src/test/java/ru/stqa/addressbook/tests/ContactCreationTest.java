@@ -1,5 +1,6 @@
 package ru.stqa.addressbook.tests;
 
+import org.junit.jupiter.api.Test;
 import ru.stqa.addressbook.model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,6 +22,7 @@ public class ContactCreationTest extends TestBase {
                         .withMiddlename("")
                         .withLastname(lastname)
                         .withNickname("")
+                        .withPhoto("")
                         .withTitle("")
                         .withCompany("")
                         .withAddress("")
@@ -41,6 +43,7 @@ public class ContactCreationTest extends TestBase {
                     .withMiddlename("")
                     .withLastname(randomString(i * 5))
                     .withNickname("")
+                    .withPhoto("")
                     .withTitle("")
                     .withCompany("")
                     .withAddress("")
@@ -86,6 +89,7 @@ public class ContactCreationTest extends TestBase {
         expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id())
                 .withMiddlename("")
                 .withNickname("")
+                .withPhoto("")
                 .withTitle("")
                 .withCompany("")
                 .withAddress("")
@@ -101,5 +105,14 @@ public class ContactCreationTest extends TestBase {
 
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
+    }
+
+    @Test
+    void canCreateContact() {
+        var contact = new ContactData()
+                .withFirstname(randomString(10))
+                .withLastname(randomString(10))
+                .withPhoto("src/test/resources/images/avatar.png");
+        app.contacts().createContact(contact);
     }
 }

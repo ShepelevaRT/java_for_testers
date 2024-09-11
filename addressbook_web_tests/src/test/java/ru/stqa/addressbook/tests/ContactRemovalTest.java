@@ -24,6 +24,7 @@ public class ContactRemovalTest extends TestBase {
                             "",
                             "",
                             "",
+                            "",
                             "-",
                             "-",
                             "",
@@ -49,6 +50,7 @@ public class ContactRemovalTest extends TestBase {
         if (!app.contacts().isContactPresent()) {
             app.contacts().createContact(
                     new ContactData("",
+                            "",
                             "",
                             "",
                             "",
