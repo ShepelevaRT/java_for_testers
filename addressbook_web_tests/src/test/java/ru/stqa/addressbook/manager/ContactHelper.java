@@ -124,7 +124,8 @@ public class ContactHelper extends HelperBase {
             contacts.add(new ContactData()
                     .withId(id)
                     .withFirstname(firstname)
-                    .withLastname(lastname));
+                    .withLastname(lastname)
+                    .withPhoto("src/test/resources/images/avatar.png"));
         }
         return contacts;
     }

@@ -1,6 +1,7 @@
 package ru.stqa.addressbook.tests;
 
 import org.junit.jupiter.api.Test;
+import ru.stqa.addressbook.common.CommonFunctions;
 import ru.stqa.addressbook.model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +23,7 @@ public class ContactCreationTest extends TestBase {
                         .withMiddlename("")
                         .withLastname(lastname)
                         .withNickname("")
-                        .withPhoto("")
+                        .withPhoto("src/test/resources/images/avatar.png")
                         .withTitle("")
                         .withCompany("")
                         .withAddress("")
@@ -39,11 +40,11 @@ public class ContactCreationTest extends TestBase {
         }
         for (int i = 0; i < 5; i++) {
             result.add(new ContactData()
-                    .withFirstname(randomString(i * 5))
+                    .withFirstname(CommonFunctions.randomString(i * 5))
                     .withMiddlename("")
-                    .withLastname(randomString(i * 5))
+                    .withLastname(CommonFunctions.randomString(i * 5))
                     .withNickname("")
-                    .withPhoto("")
+                    .withPhoto("src/test/resources/images/avatar.png")
                     .withTitle("")
                     .withCompany("")
                     .withAddress("")
@@ -89,7 +90,7 @@ public class ContactCreationTest extends TestBase {
         expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id())
                 .withMiddlename("")
                 .withNickname("")
-                .withPhoto("")
+                .withPhoto("src/test/resources/images/avatar.png")
                 .withTitle("")
                 .withCompany("")
                 .withAddress("")
@@ -110,9 +111,9 @@ public class ContactCreationTest extends TestBase {
     @Test
     void canCreateContact() {
         var contact = new ContactData()
-                .withFirstname(randomString(10))
-                .withLastname(randomString(10))
-                .withPhoto(randomFile("src/test/resources/images"));
+                .withFirstname(CommonFunctions.randomString(10))
+                .withLastname(CommonFunctions.randomString(10))
+                .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
         app.contacts().createContact(contact);
     }
 }
