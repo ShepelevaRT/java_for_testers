@@ -3,6 +3,7 @@ package ru.stqa.addressbook.generator;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import ru.stqa.addressbook.common.CommonFunctions;
+import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.GroupData;
 
 import java.util.ArrayList;
@@ -50,7 +51,28 @@ public class Generator {
     }
 
     private Object generateContacts() {
-        return null;
+        var result = new ArrayList<ContactData>();
+        for (int i = 0; i < count; i++) {
+            result.add(new ContactData()
+                    .withFirstname(CommonFunctions.randomString(i * 5))
+                    .withMiddlename("")
+                    .withLastname(CommonFunctions.randomString(i * 5))
+                    .withNickname("")
+                    .withPhoto("src/test/resources/images/avatar.png")
+                    .withTitle("")
+                    .withCompany("")
+                    .withAddress("")
+                    .withHome("")
+                    .withEmail("")
+                    .withHomepage("")
+                    .withBday("-")
+                    .withBmonth("-")
+                    .withByear("")
+                    .withAday("-")
+                    .withAmonth("-")
+                    .withAyear(""));
+        }
+        return result;
     }
 
     private Object generateGroups() {
