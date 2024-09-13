@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Properties;
+
 public class ApplicationManager {
 
     protected WebDriver driver;
@@ -16,7 +18,10 @@ public class ApplicationManager {
 
     private ContactHelper contacts;
 
-    public void init(String browser) {
+    private Properties properties;
+
+    public void init(String browser, Properties properties) {
+        this.properties = properties;
         if (driver == null) {
             if ("Google Chrome".equals(browser)) {
                 driver = new ChromeDriver();
@@ -26,8 +31,8 @@ public class ApplicationManager {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
             }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-            driver.get("http://localhost/addressbook/");
-            session().login("admin", "secret");
+            driver.get(properties.getProperty("web.baseUrl"));
+            session().login(properties.getProperty("web.username"), properties.getProperty("web.password"));
         }
     }
 
