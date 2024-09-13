@@ -2,12 +2,14 @@ package ru.stqa.addressbook.tests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.addressbook.common.CommonFunctions;
 import ru.stqa.addressbook.model.ContactData;
+import ru.stqa.addressbook.model.GroupData;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -46,19 +48,29 @@ public class ContactCreationTest extends TestBase {
 //                        .withAyear(""));
 //            }
 //        }
-        var json = "";
-        try (var reader = new FileReader("contacts.json");
-             var breader = new BufferedReader(reader)) {
-            var line = breader.readLine();
-            while (line != null) {
-                json = json + line;
-                line = breader.readLine();
-            }
-        }
-
-    //    var json = Files.readString(Paths.get("contacts.json"));
-        ObjectMapper mapper = new ObjectMapper(); // create once, reuse
-        var value = mapper.readValue(json, new TypeReference<List<ContactData>>() {} );
+//-------------------------------------------------------------------------------------------------------------
+//Чтение json построчно
+// файлы бывают очень большими, если можно читать файл строчка за строчкой, тогда все остальные просто игнорируются
+//        var json = "";
+//        try (var reader = new FileReader("contacts.json");
+//             var breader = new BufferedReader(reader)) {
+//            var line = breader.readLine();
+//            while (line != null) {
+//                json = json + line;
+//                line = breader.readLine();
+//            }
+//        }
+//        Чтение json целым файлом
+//    var json = Files.readString(Paths.get("contacts.json"));
+//-------------------------------------------------------------------------------------------------------------
+//Чтение json
+//        ObjectMapper mapper = new ObjectMapper(); // create once, reuse
+//        var value = mapper.readValue(json, new TypeReference<List<ContactData>>() {} );
+//-------------------------------------------------------------------------------------------------------------
+//        Чтение xml
+        var mapper = new XmlMapper();
+        var value = mapper.readValue(new File("contacts.xml"), new TypeReference<List<ContactData>>() {
+        });
         result.addAll(value);
 //        for (int i = 0; i < 5; i++) {
 //            result.add(new ContactData()

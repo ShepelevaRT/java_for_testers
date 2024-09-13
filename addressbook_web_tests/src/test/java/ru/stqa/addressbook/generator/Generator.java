@@ -4,6 +4,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import ru.stqa.addressbook.common.CommonFunctions;
 import ru.stqa.addressbook.model.ContactData;
@@ -52,13 +53,15 @@ public class Generator {
             try (var writer = new FileWriter(output)) {
                 writer.write(json);
             }
-        } if ("yaml".equals(format)) {
-                //YAMLMapper
-                var mapper = new YAMLMapper();
-                mapper.writeValue(new File(output), data);
-            } else {
-                throw new IllegalArgumentException("Неизвестный формата" + format);
-            }
+        } else if ("yaml".equals(format)) {
+            var mapper = new YAMLMapper();
+            mapper.writeValue(new File(output), data);
+        } else if ("xml".equals(format)) {
+            var mapper = new XmlMapper();
+            mapper.writeValue(new File(output), data);
+        } else {
+            throw new IllegalArgumentException("Неизвестный формат" + format);
+        }
     }
 
     private Object generate() {
