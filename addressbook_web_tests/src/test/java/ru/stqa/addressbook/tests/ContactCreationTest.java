@@ -1,7 +1,6 @@
 package ru.stqa.addressbook.tests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,14 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.addressbook.common.CommonFunctions;
 import ru.stqa.addressbook.model.ContactData;
-import ru.stqa.addressbook.model.GroupData;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -95,6 +89,48 @@ public class ContactCreationTest extends TestBase {
         return result;
     }
 
+    public static List<ContactData> singleRandomContact() {
+        return List.of(new ContactData()
+                .withFirstname(CommonFunctions.randomString(10))
+
+                .withLastname(CommonFunctions.randomString(10))
+                .withMiddlename(CommonFunctions.randomString(10))
+                .withNickname(CommonFunctions.randomString(10))
+                .withTitle(CommonFunctions.randomString(10))
+                .withCompany(CommonFunctions.randomString(10))
+                .withAddress(CommonFunctions.randomString(10))
+                .withHome(CommonFunctions.randomString(10))
+                .withEmail(CommonFunctions.randomString(10))
+                .withHomepage(CommonFunctions.randomString(10))
+//                .withBday(CommonFunctions.randomIntDay())
+//                .withBmonth(CommonFunctions.randomIntMonth())
+                .withByear(CommonFunctions.randomIntYear())
+//                .withAday(CommonFunctions.randomIntDay())
+//                .withAmonth(CommonFunctions.randomIntMonth())
+                .withAyear(CommonFunctions.randomIntYear())
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("singleRandomContact")
+    public void canCreateSingleContact(ContactData contact) {
+        var oldContacts = app.jdbc().getContactList();
+        app.contacts().createContact(contact);
+        var newContacts = app.jdbc().getContactList();
+        Comparator<ContactData> compareById = (o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        };
+        newContacts.sort(compareById);
+
+        var maxId = newContacts.get(newContacts.size() - 1).id();
+
+        var expectedList = new ArrayList<>(oldContacts);
+
+        expectedList.add(contact.withId(maxId));
+        expectedList.sort(compareById);
+        Assertions.assertEquals(newContacts, expectedList);
+    }
+
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void canCreateMultipleContact(ContactData contact) {
@@ -135,6 +171,7 @@ public class ContactCreationTest extends TestBase {
                 .withFirstname(CommonFunctions.randomString(10))
                 .withLastname(CommonFunctions.randomString(10))
                 .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
+
         app.contacts().createContact(contact);
     }
 }

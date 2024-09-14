@@ -20,4 +20,37 @@ public class CommonFunctions {
         var index = rnd.nextInt(fileNames.length);
         return Paths.get(dir, fileNames[index]).toString();
     }
+
+    public static String randomIntDay() {
+        var rnd = new Random();
+        int number = (int) (rnd.nextInt(30) + 1);
+        String result = String.valueOf(number);
+        return result;
+    }
+
+    public static String randomIntMonth() {
+        var rnd = new Random();
+        int number = (int) (rnd.nextInt(11));
+        var month = new String[]{"January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"};
+        String result = month[number];
+        return result;
+    }
+
+    public static String randomIntYear() {
+        var rnd = new Random();
+        int number = (int) (rnd.nextInt(63) + 1960);
+        String result = String.valueOf(number);
+        return result;
+    }
 }
