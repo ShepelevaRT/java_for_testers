@@ -55,11 +55,11 @@ public class JdbcHelper extends HelperBase {
                         .withHome(result.getString("home"))
                         .withEmail(result.getString("email"))
                         .withHomepage(result.getString("homepage"))
-//                        .withBday(result.getString("bday"))
-//                        .withBmonth(result.getString("bmonth"))
+                        .withBday(result.getString("bday"))
+                        .withBmonth(result.getString("bmonth"))
                         .withByear(result.getString("byear"))
-//                        .withAday(result.getString("aday"))
-//                        .withAmonth(result.getString("bmonth"))
+                        .withAday(result.getString("aday"))
+                        .withAmonth(result.getString("bmonth"))
                         .withAyear(result.getString("ayear"))
                 );
             }
