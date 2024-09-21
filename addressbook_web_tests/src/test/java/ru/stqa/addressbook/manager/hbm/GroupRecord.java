@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "group_list")
+
 public class GroupRecord {
 
     @Id
