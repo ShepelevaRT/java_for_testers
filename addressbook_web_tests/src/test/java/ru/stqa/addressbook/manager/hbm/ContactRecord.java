@@ -61,4 +61,34 @@ public class ContactRecord {
 
     @Column(name = "ayear")
     public String ayear;
+
+    public String mobile = "";
+    public String work = "";
+    public String fax = "";
+    public String email2 = "";
+    public String email3 = "";
+
+    public ContactRecord() {
+    }
+
+    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String email, String homepage, int bday, String bmonth, String byear, int aday, String amonth, String ayear) {
+
+        this.id = id;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.nickname = nickname;
+        this.title = title;
+        this.company = company;
+        this.address = address;
+        this.home = home;
+        this.email = email;
+        this.homepage = homepage;
+        this.bday = bday;
+        this.bmonth = bmonth;
+        this.byear = byear;
+        this.aday = aday;
+        this.amonth = amonth;
+        this.ayear = ayear;
+    }
 }

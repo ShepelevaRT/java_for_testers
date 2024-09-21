@@ -14,6 +14,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContact(ContactData contact) {
+        returnToContactPage();
         initContactCreation();
         fillContactForm(contact);
         submitContactCreation();
@@ -21,6 +22,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        returnToContactPage();
         selectContact(contact);
         initContactModification(contact);
         fillContactForm(modifiedContact);
@@ -55,6 +57,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void removeContact(ContactData contact) {
+        returnToContactPage();
         selectContact(contact);
         removeSelectedContacts();
         returnToContactPage();
@@ -93,6 +96,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void removeAllContact() {
+        returnToContactPage();
         selectAllContact();
         removeSelectedContacts();
         returnToContactPage();

@@ -12,11 +12,8 @@ public class GroupRemovalTests extends TestBase {
 
     @Test
     public void canRemoveGroup() {
-        if (app.groups().getCount() == 0) {
-            app.groups().createGroup(new GroupData()
-                    .withName(CommonFunctions.randomString(10))
-                    .withHeader(CommonFunctions.randomString(10))
-                    .withFooter(CommonFunctions.randomString(10)));
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "", "", ""));
         }
 //получить количество групп. что бы сравнить с новым количеством
 //        int groupCount = app.groups().getCount();
@@ -32,11 +29,17 @@ public class GroupRemovalTests extends TestBase {
         // int newGroupCount = app.groups().getCount();
 //--------------------------------------------------------------------
 //получение списка групп с БД
-        var oldGroups = app.jdbc().getGroupList();
+//        var oldGroups = app.jdbc().getGroupList();
+//        var rnd = new Random();
+//        var index = rnd.nextInt(oldGroups.size());
+//        app.groups().removeGroup(oldGroups.get(index));
+//        var newGroups = app.jdbc().getGroupList();
+//Получение списков с использованием Hibernate
+        var oldGroups = app.hbm().getGroupList();
         var rnd = new Random();
         var index = rnd.nextInt(oldGroups.size());
         app.groups().removeGroup(oldGroups.get(index));
-        var newGroups = app.jdbc().getGroupList();
+        var newGroups = app.hbm().getGroupList();
         var expectedList = new ArrayList<>(oldGroups);
         expectedList.remove(index);
         Assertions.assertEquals(newGroups, expectedList);
@@ -44,10 +47,10 @@ public class GroupRemovalTests extends TestBase {
 
     @Test
     void canRemoveAllGroupsAtOnce() {
-        if (app.groups().getCount() == 0) {
-            app.groups().createGroup(new GroupData("", "", "", ""));
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "", "", ""));
         }
         app.groups().removeAllGroups();
-        Assertions.assertEquals(0, app.groups().getCount());
+        Assertions.assertEquals(0, app.hbm().getGroupCount());
     }
 }
