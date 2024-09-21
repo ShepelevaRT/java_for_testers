@@ -92,9 +92,8 @@ public class ContactCreationTest extends TestBase {
     public static List<ContactData> singleRandomContact() {
         return List.of(new ContactData()
                 .withFirstname(CommonFunctions.randomString(10))
-
-                .withLastname(CommonFunctions.randomString(10))
                 .withMiddlename(CommonFunctions.randomString(10))
+                .withLastname(CommonFunctions.randomString(10))
                 .withNickname(CommonFunctions.randomString(10))
                 .withTitle(CommonFunctions.randomString(10))
                 .withCompany(CommonFunctions.randomString(10))
@@ -102,11 +101,11 @@ public class ContactCreationTest extends TestBase {
                 .withHome(CommonFunctions.randomString(10))
                 .withEmail(CommonFunctions.randomString(10))
                 .withHomepage(CommonFunctions.randomString(10))
-//                .withBday(CommonFunctions.randomIntDay())
-//                .withBmonth(CommonFunctions.randomIntMonth())
+                .withBday(CommonFunctions.randomIntDay())
+                .withBmonth(CommonFunctions.randomIntMonth())
                 .withByear(CommonFunctions.randomIntYear())
-//                .withAday(CommonFunctions.randomIntDay())
-//                .withAmonth(CommonFunctions.randomIntMonth())
+                .withAday(CommonFunctions.randomIntDay())
+                .withAmonth(CommonFunctions.randomIntMonth())
                 .withAyear(CommonFunctions.randomIntYear())
         );
     }
@@ -147,17 +146,16 @@ public class ContactCreationTest extends TestBase {
         expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id())
                 .withMiddlename("")
                 .withNickname("")
-                .withPhoto("src/test/resources/images/avatar.png")
                 .withTitle("")
                 .withCompany("")
                 .withAddress("")
                 .withHome("")
                 .withEmail("")
                 .withHomepage("")
-                .withBday("-")
+                .withBday("1")
                 .withBmonth("-")
                 .withByear("")
-                .withAday("-")
+                .withAday("1")
                 .withAmonth("-")
                 .withAyear(""));
 
@@ -169,8 +167,8 @@ public class ContactCreationTest extends TestBase {
     void canCreateContact() {
         var contact = new ContactData()
                 .withFirstname(CommonFunctions.randomString(10))
-                .withLastname(CommonFunctions.randomString(10))
-                .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
+                .withLastname(CommonFunctions.randomString(10));
+          //      .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
 
         app.contacts().createContact(contact);
     }

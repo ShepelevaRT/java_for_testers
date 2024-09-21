@@ -16,9 +16,8 @@ public class ContactRemovalTest extends TestBase {
             app.contacts().createContact(
                     new ContactData()
                             .withFirstname(CommonFunctions.randomString(10))
-
-                            .withLastname(CommonFunctions.randomString(10))
                             .withMiddlename(CommonFunctions.randomString(10))
+                            .withLastname(CommonFunctions.randomString(10))
                             .withNickname(CommonFunctions.randomString(10))
                             .withTitle(CommonFunctions.randomString(10))
                             .withCompany(CommonFunctions.randomString(10))
@@ -26,11 +25,11 @@ public class ContactRemovalTest extends TestBase {
                             .withHome(CommonFunctions.randomString(10))
                             .withEmail(CommonFunctions.randomString(10))
                             .withHomepage(CommonFunctions.randomString(10))
-//                .withBday(CommonFunctions.randomIntDay())
-//                .withBmonth(CommonFunctions.randomIntMonth())
+                            .withBday(CommonFunctions.randomIntDay())
+                            .withBmonth(CommonFunctions.randomIntMonth())
                             .withByear(CommonFunctions.randomIntYear())
-//                .withAday(CommonFunctions.randomIntDay())
-//                .withAmonth(CommonFunctions.randomIntMonth())
+                            .withAday(CommonFunctions.randomIntDay())
+                            .withAmonth(CommonFunctions.randomIntMonth())
                             .withAyear(CommonFunctions.randomIntYear()));
         }
 //получить количество контактов. что бы сравнить с новым количеством
@@ -66,7 +65,6 @@ public class ContactRemovalTest extends TestBase {
                             "",
                             "",
                             "",
-                            "src/test/resources/images/avatar.png",
                             "",
                             "",
                             "",

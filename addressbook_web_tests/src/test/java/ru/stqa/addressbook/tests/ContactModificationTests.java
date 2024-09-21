@@ -17,9 +17,8 @@ public class ContactModificationTests extends TestBase {
             app.contacts().createContact(
                     new ContactData()
                             .withFirstname(CommonFunctions.randomString(10))
-
-                            .withLastname(CommonFunctions.randomString(10))
                             .withMiddlename(CommonFunctions.randomString(10))
+                            .withLastname(CommonFunctions.randomString(10))
                             .withNickname(CommonFunctions.randomString(10))
                             .withTitle(CommonFunctions.randomString(10))
                             .withCompany(CommonFunctions.randomString(10))
@@ -27,11 +26,11 @@ public class ContactModificationTests extends TestBase {
                             .withHome(CommonFunctions.randomString(10))
                             .withEmail(CommonFunctions.randomString(10))
                             .withHomepage(CommonFunctions.randomString(10))
-//                .withBday(CommonFunctions.randomIntDay())
-//                .withBmonth(CommonFunctions.randomIntMonth())
+                            .withBday(CommonFunctions.randomIntDay())
+                            .withBmonth(CommonFunctions.randomIntMonth())
                             .withByear(CommonFunctions.randomIntYear())
-//                .withAday(CommonFunctions.randomIntDay())
-//                .withAmonth(CommonFunctions.randomIntMonth())
+                            .withAday(CommonFunctions.randomIntDay())
+                            .withAmonth(CommonFunctions.randomIntMonth())
                             .withAyear(CommonFunctions.randomIntYear()));
         }
 //Получение списка из интерфейса
@@ -47,7 +46,7 @@ public class ContactModificationTests extends TestBase {
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
         var testData = new ContactData().withFirstname("modified_name").withLastname("modified_last");
-        app.contacts().modifyContact(oldContacts.get(index), testData, index);
+        app.contacts().modifyContact(oldContacts.get(index), testData);
         var newContacts = app.jdbc().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.set(index, testData.withId(oldContacts.get(index).id()));

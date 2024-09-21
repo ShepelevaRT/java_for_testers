@@ -15,6 +15,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//--type contacts --output contacts.json --format json --count 3
+//--type contacts --output contacts.xml --format xml --count 3
+//--type contacts --output contacts.yaml --format yaml --count 3
+
 public class Generator {
 
     @Parameter(names = {"--type", "-t"})
@@ -82,17 +86,16 @@ public class Generator {
                     .withMiddlename("")
                     .withLastname(CommonFunctions.randomString(i * 5))
                     .withNickname("")
-                    .withPhoto("src/test/resources/images/avatar.png")
                     .withTitle("")
                     .withCompany("")
                     .withAddress("")
                     .withHome("")
                     .withEmail("")
                     .withHomepage("")
-                    .withBday("-")
+                    .withBday("1")
                     .withBmonth("-")
                     .withByear("")
-                    .withAday("-")
+                    .withAday("1")
                     .withAmonth("-")
                     .withAyear(""));
         }

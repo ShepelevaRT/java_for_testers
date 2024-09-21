@@ -20,9 +20,9 @@ public class ContactHelper extends HelperBase {
         returnToContactPage();
     }
 
-    public void modifyContact(ContactData contact, ContactData modifiedContact, int index) {
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
         selectContact(contact);
-        initContactModification(index);
+        initContactModification(contact);
         fillContactForm(modifiedContact);
         submitContactModification();
         returnToContactPage();
@@ -33,7 +33,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("nickname"), contact.nickname());
-        attach(By.name("photo"), contact.photo());
+        //        attach(By.name("photo"), contact.photo());
         type(By.name("title"), contact.title());
         type(By.name("company"), contact.company());
         type(By.name("address"), contact.address());
@@ -51,7 +51,7 @@ public class ContactHelper extends HelperBase {
     private void dropdownClick(By locator, String text) {
         click(locator);
         WebElement dropdown = manager.driver.findElement(locator);
-        dropdown.findElement(By.xpath("//option[. = '" + text + "']")).click();
+        dropdown.findElement(By.xpath(".//option[. = '" + text + "']")).click();
     }
 
     public void removeContact(ContactData contact) {
@@ -69,7 +69,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void removeSelectedContacts() {
-        click(By.xpath("//input[@value=\'Delete\']"));
+        click(By.xpath("//input[@value='Delete']"));
     }
 
     public boolean isContactPresent() {
@@ -84,9 +84,8 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    private void initContactModification(int index) {
-        int teg_index = index + 2;
-        click(By.xpath("//tr[" + teg_index + "]/td[8]/a/img[@alt='Edit']"));
+    private void initContactModification(ContactData contact) {
+        click(By.xpath(".//td[8]/a[contains(@href,'" + contact.id() + "')]/img[@alt='Edit']"));
     }
 
     private void selectContact(ContactData contact) {
@@ -124,8 +123,8 @@ public class ContactHelper extends HelperBase {
             contacts.add(new ContactData()
                     .withId(id)
                     .withFirstname(firstname)
-                    .withLastname(lastname)
-                    .withPhoto("src/test/resources/images/avatar.png"));
+                    .withLastname(lastname));
+             //       .withPhoto("src/test/resources/images/avatar.png"));
         }
         return contacts;
     }

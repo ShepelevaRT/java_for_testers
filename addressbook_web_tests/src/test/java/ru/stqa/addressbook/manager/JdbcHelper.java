@@ -45,9 +45,8 @@ public class JdbcHelper extends HelperBase {
                 contacts.add(new ContactData()
                         .withId(result.getString("id"))
                         .withFirstname(result.getString("firstname"))
-
-                        .withLastname(result.getString("lastname"))
                         .withMiddlename(result.getString("middlename"))
+                        .withLastname(result.getString("lastname"))
                         .withNickname(result.getString("nickname"))
                         .withTitle(result.getString("title"))
                         .withCompany(result.getString("company"))
@@ -59,7 +58,7 @@ public class JdbcHelper extends HelperBase {
                         .withBmonth(result.getString("bmonth"))
                         .withByear(result.getString("byear"))
                         .withAday(result.getString("aday"))
-                        .withAmonth(result.getString("bmonth"))
+                        .withAmonth(result.getString("amonth"))
                         .withAyear(result.getString("ayear"))
                 );
             }
