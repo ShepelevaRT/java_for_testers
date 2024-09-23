@@ -95,6 +95,7 @@ public class ContactCreationTest extends TestBase {
                 .withMiddlename(CommonFunctions.randomString(10))
                 .withLastname(CommonFunctions.randomString(10))
                 .withNickname(CommonFunctions.randomString(10))
+                .withPhoto("src/test/resources/images/avatar.png")
                 .withTitle(CommonFunctions.randomString(10))
                 .withCompany(CommonFunctions.randomString(10))
                 .withAddress(CommonFunctions.randomString(10))
@@ -150,6 +151,7 @@ public class ContactCreationTest extends TestBase {
         expectedList.add(contact.withId(newContacts.get(newContacts.size() - 1).id())
                 .withMiddlename("")
                 .withNickname("")
+                .withPhoto("src/test/resources/images/avatar.png")
                 .withTitle("")
                 .withCompany("")
                 .withAddress("")
@@ -171,9 +173,10 @@ public class ContactCreationTest extends TestBase {
     void canCreateContact() {
         var contact = new ContactData()
                 .withFirstname(CommonFunctions.randomString(10))
-                .withLastname(CommonFunctions.randomString(10));
-          //      .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
+                .withLastname(CommonFunctions.randomString(10))
+                .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
 
         app.contacts().createContact(contact);
     }
+
 }

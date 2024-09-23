@@ -35,7 +35,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("nickname"), contact.nickname());
-        //        attach(By.name("photo"), contact.photo());
+        attach(By.name("photo"), contact.photo());
         type(By.name("title"), contact.title());
         type(By.name("company"), contact.company());
         type(By.name("address"), contact.address());
@@ -120,7 +120,7 @@ public class ContactHelper extends HelperBase {
 
         for (var locator : main_locators) {
             var lastname = locator.findElement(By.cssSelector("td:nth-child(2)")).getText();
-            var firstname =  locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            var firstname = locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
             var checkbox_locator = locator.findElement(By.name("selected[]"));
             var id = checkbox_locator.getAttribute("value");
 
@@ -128,7 +128,7 @@ public class ContactHelper extends HelperBase {
                     .withId(id)
                     .withFirstname(firstname)
                     .withLastname(lastname));
-             //       .withPhoto("src/test/resources/images/avatar.png"));
+            //       .withPhoto("src/test/resources/images/avatar.png"));
         }
         return contacts;
     }

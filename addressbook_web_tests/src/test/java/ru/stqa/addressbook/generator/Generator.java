@@ -86,6 +86,7 @@ public class Generator {
                     .withMiddlename("")
                     .withLastname(CommonFunctions.randomString(i * 5))
                     .withNickname("")
+                    .withPhoto("src/test/resources/images/avatar.png")
                     .withTitle("")
                     .withCompany("")
                     .withAddress("")

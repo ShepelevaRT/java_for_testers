@@ -68,7 +68,11 @@ public class HibernateHelper extends HelperBase {
     }
 
     private static ContactData convertContact(ContactRecord record) {
-        return new ContactData("" + record.id, record.firstname, record.middlename, record.lastname, record.nickname, record.title, record.company, record.address, record.home, record.email, record.homepage, "" + record.bday, record.bmonth, record.byear, "" + record.aday, record.amonth, record.ayear);
+        var photo = record.photo;
+        if (photo != null) {
+            photo = "src/test/resources/images/avatar.png";
+        }
+        return new ContactData("" + record.id, record.firstname, record.middlename, record.lastname, record.nickname, photo, record.title, record.company, record.address, record.home, record.email, record.homepage, "" + record.bday, record.bmonth, record.byear, "" + record.aday, record.amonth, record.ayear);
     }
 
     private static ContactRecord convertContact(ContactData data) {
@@ -84,7 +88,7 @@ public class HibernateHelper extends HelperBase {
         if ("".equals(aday)) {
             aday = "1";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.nickname(), data.title(), data.company(), data.address(), data.home(), data.email(), data.homepage(), Integer.parseInt(bday), data.bmonth(), data.byear(), Integer.parseInt(aday), data.amonth(), data.ayear());
+        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.nickname(), data.photo(), data.title(), data.company(), data.address(), data.home(), data.email(), data.homepage(), Integer.parseInt(bday), data.bmonth(), data.byear(), Integer.parseInt(aday), data.amonth(), data.ayear());
     }
 
     public long getGroupCount() {

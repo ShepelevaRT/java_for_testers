@@ -23,6 +23,9 @@ public class ContactRecord {
     @Column(name = "lastname")
     public String lastname;
 
+    @Column(name = "photo")
+    public String photo;
+
     @Column(name = "nickname")
     public String nickname;
 
@@ -71,13 +74,14 @@ public class ContactRecord {
     public ContactRecord() {
     }
 
-    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String email, String homepage, int bday, String bmonth, String byear, int aday, String amonth, String ayear) {
+    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String photo,String title, String company, String address, String home, String email, String homepage, int bday, String bmonth, String byear, int aday, String amonth, String ayear) {
 
         this.id = id;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.nickname = nickname;
+        this.photo = photo;
         this.title = title;
         this.company = company;
         this.address = address;
