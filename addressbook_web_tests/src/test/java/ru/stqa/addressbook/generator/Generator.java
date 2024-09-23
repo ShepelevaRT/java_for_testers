@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 //--type contacts --output contacts.json --format json --count 3
 //--type contacts --output contacts.xml --format xml --count 3
@@ -78,39 +81,35 @@ public class Generator {
         }
     }
 
+    private  Object generateData(Supplier<Object> dataSupplier) {
+        return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
+    }
+
     private Object generateContacts() {
-        var result = new ArrayList<ContactData>();
-        for (int i = 0; i < count; i++) {
-            result.add(new ContactData()
-                    .withFirstname(CommonFunctions.randomString(i * 5))
-                    .withMiddlename("")
-                    .withLastname(CommonFunctions.randomString(i * 5))
-                    .withNickname("")
-                    .withPhoto("src/test/resources/images/avatar.png")
-                    .withTitle("")
-                    .withCompany("")
-                    .withAddress("")
-                    .withHome("")
-                    .withEmail("")
-                    .withHomepage("")
-                    .withBday("1")
-                    .withBmonth("-")
-                    .withByear("")
-                    .withAday("1")
-                    .withAmonth("-")
-                    .withAyear(""));
-        }
-        return result;
+        return generateData(() -> new ContactData()
+                .withFirstname(CommonFunctions.randomString( 5))
+                .withMiddlename(CommonFunctions.randomString( 5))
+                .withLastname(CommonFunctions.randomString( 5))
+                .withNickname(CommonFunctions.randomString( 5))
+                .withPhoto("src/test/resources/images/avatar.png")
+                .withTitle(CommonFunctions.randomString( 5))
+                .withCompany(CommonFunctions.randomString(5))
+                .withAddress(CommonFunctions.randomString( 5))
+                .withHome(CommonFunctions.randomString( 5))
+                .withEmail(CommonFunctions.randomString( 5))
+                .withHomepage(CommonFunctions.randomString( 5))
+                .withBday(CommonFunctions.randomIntDay())
+                .withBmonth(CommonFunctions.randomIntMonth())
+                .withByear(CommonFunctions.randomIntYear())
+                .withAday(CommonFunctions.randomIntDay())
+                .withAmonth(CommonFunctions.randomIntMonth())
+                .withAyear(CommonFunctions.randomIntYear()));
     }
 
     private Object generateGroups() {
-        var result = new ArrayList<GroupData>();
-        for (int i = 0; i < count; i++) {
-            result.add(new GroupData()
-                    .withName(CommonFunctions.randomString(i * 10))
-                    .withHeader(CommonFunctions.randomString(i * 10))
-                    .withFooter(CommonFunctions.randomString(i * 10)));
-        }
-        return result;
+        return generateData(() -> new GroupData()
+                .withName(CommonFunctions.randomString(10))
+                .withHeader(CommonFunctions.randomString(10))
+                .withFooter(CommonFunctions.randomString( 10)));
     }
 }

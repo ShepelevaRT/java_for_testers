@@ -166,7 +166,6 @@ public class ContactCreationTest extends TestBase {
                 .withAday("1")
                 .withAmonth("-")
                 .withAyear(""));
-
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
     }

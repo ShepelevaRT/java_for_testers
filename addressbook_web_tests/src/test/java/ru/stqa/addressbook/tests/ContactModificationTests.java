@@ -14,24 +14,24 @@ public class ContactModificationTests extends TestBase {
     @Test
     void canModifyContact() {
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "src/test/resources/images/avatar.png",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "1",
-                    "-",
-                    "",
-                    "1",
-                    "-",
-                    ""));
+            app.hbm().createContact(new ContactData()
+                    .withFirstname(CommonFunctions.randomString(5))
+                    .withMiddlename(CommonFunctions.randomString(5))
+                    .withLastname(CommonFunctions.randomString(5))
+                    .withNickname(CommonFunctions.randomString(5))
+                    .withPhoto("src/test/resources/images/avatar.png")
+                    .withTitle(CommonFunctions.randomString(5))
+                    .withCompany(CommonFunctions.randomString( 5))
+                    .withAddress(CommonFunctions.randomString( 5))
+                    .withHome(CommonFunctions.randomString( 5))
+                    .withEmail(CommonFunctions.randomString(5))
+                    .withHomepage(CommonFunctions.randomString( 5))
+                    .withBday(CommonFunctions.randomIntDay())
+                    .withBmonth(CommonFunctions.randomIntMonth())
+                    .withByear(CommonFunctions.randomIntYear())
+                    .withAday(CommonFunctions.randomIntDay())
+                    .withAmonth(CommonFunctions.randomIntMonth())
+                    .withAyear(CommonFunctions.randomIntYear()));
         }
 //Получение списка из интерфейса
 //        var oldContacts = app.contacts().getList();
