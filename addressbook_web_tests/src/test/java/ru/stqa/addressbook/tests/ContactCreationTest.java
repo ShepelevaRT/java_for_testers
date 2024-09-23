@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 
 public class ContactCreationTest extends TestBase {
 
@@ -185,7 +186,7 @@ public class ContactCreationTest extends TestBase {
         var contact = new ContactData()
                 .withFirstname(CommonFunctions.randomString(10))
                 .withLastname(CommonFunctions.randomString(10))
-                .withPhoto(CommonFunctions.randomFile("src/test/resources/images"));
+                .withPhoto("src/test/resources/images/avatar.png");
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group_name", "group_header", "group_footer"));
         }
@@ -194,7 +195,36 @@ public class ContactCreationTest extends TestBase {
         var oldRelated = app.hbm().getContactsInGroup(group);
         app.contacts().createContact(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
-        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+        var maxId = newRelated.get(newRelated.size() - 1).id();
+
+        var expectedList = new ArrayList<>(oldRelated);
+
+        expectedList.add(contact.withId(maxId));
+        Assertions.assertEquals(newRelated, expectedList);
     }
 
+    @Test
+    void canRemoveContactFromGroup() {
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group_name", "group_header", "group_footer"));
+        }
+        var group = app.groups().getList().get(0);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        if (oldRelated.isEmpty()) {
+            System.out.println("null");
+            var contact = new ContactData()
+                    .withFirstname(CommonFunctions.randomString(10))
+                    .withLastname(CommonFunctions.randomString(10))
+                    .withPhoto("src/test/resources/images/avatar.png");
+            app.contacts().createContact(contact, group);
+            oldRelated = app.hbm().getContactsInGroup(group);
+        }
+        var rnd = new Random();
+        var index = rnd.nextInt(oldRelated.size());
+        app.contacts().removeContactFromGroup(oldRelated.get(index), group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        var expectedList = new ArrayList<>(oldRelated);
+        expectedList.remove(index);
+        Assertions.assertEquals(newRelated, expectedList);
+    }
 }
