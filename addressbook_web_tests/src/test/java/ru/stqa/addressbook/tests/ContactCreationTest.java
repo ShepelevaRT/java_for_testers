@@ -187,7 +187,10 @@ public class ContactCreationTest extends TestBase {
                 .withLastname(CommonFunctions.randomString(10))
                 .withPhoto("src/test/resources/images/avatar.png");
         if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData("", "group_name", "group_header", "group_footer"));
+            app.hbm().createGroup(new GroupData()
+                    .withName(CommonFunctions.randomString(10))
+                    .withHeader(CommonFunctions.randomString(10))
+                    .withFooter(CommonFunctions.randomString(10)));
         }
         var group = app.groups().getList().get(0);
 
