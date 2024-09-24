@@ -8,6 +8,7 @@ import ru.stqa.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ContactHelper extends HelperBase {
 
@@ -134,11 +135,14 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectAllContact() {
-        var checkboxes = manager.driver.findElements(By.name("selected[]"));
-
-        for (var checkbox : checkboxes) {
-            checkbox.click();
-        }
+//        var checkboxes = manager.driver.findElements(By.name("selected[]"));
+//
+//        for (var checkbox : checkboxes) {
+//            checkbox.click();
+//        }
+        manager.driver
+                .findElements(By.name("selected[]"))
+                .forEach(WebElement::click);
     }
 
     public int getCount() {
@@ -146,21 +150,33 @@ public class ContactHelper extends HelperBase {
     }
 
     public List<ContactData> getList() {
-        var contacts = new ArrayList<ContactData>();
+        returnToContactPage();
+//        var contacts = new ArrayList<ContactData>();
         var main_locators = manager.driver.findElements(By.cssSelector("tr:not(:first-child)"));
-
-        for (var locator : main_locators) {
+return main_locators.stream()
+        .map(locator -> {
             var lastname = locator.findElement(By.cssSelector("td:nth-child(2)")).getText();
             var firstname = locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
             var checkbox_locator = locator.findElement(By.name("selected[]"));
             var id = checkbox_locator.getAttribute("value");
-
-            contacts.add(new ContactData()
+            return new ContactData()
                     .withId(id)
                     .withFirstname(firstname)
-                    .withLastname(lastname));
-            //       .withPhoto("src/test/resources/images/avatar.png"));
-        }
-        return contacts;
+                    .withLastname(lastname);
+        })
+        .collect(Collectors.toList());
+//        for (var locator : main_locators) {
+//            var lastname = locator.findElement(By.cssSelector("td:nth-child(2)")).getText();
+//            var firstname = locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
+//            var checkbox_locator = locator.findElement(By.name("selected[]"));
+//            var id = checkbox_locator.getAttribute("value");
+//
+//            contacts.add(new ContactData()
+//                    .withId(id)
+//                    .withFirstname(firstname)
+//                    .withLastname(lastname));
+//            //       .withPhoto("src/test/resources/images/avatar.png"));
+//        }
+//        return contacts;
     }
 }

@@ -97,8 +97,8 @@ public class GroupHelper extends HelperBase {
 //        }
 //        checkboxes.forEach(checkbox -> checkbox.click());
         manager.driver.
-                findElements(By.name("selected[]")).
-                forEach(WebElement::click);
+                findElements(By.name("selected[]"))
+                .forEach(WebElement::click);
     }
 
     public List<GroupData> getList() {
