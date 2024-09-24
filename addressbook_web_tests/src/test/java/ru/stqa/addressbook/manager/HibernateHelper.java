@@ -10,6 +10,7 @@ import ru.stqa.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HibernateHelper extends HelperBase {
 
@@ -28,11 +29,12 @@ public class HibernateHelper extends HelperBase {
     }
 
     static List<GroupData> convertGroupList(List<GroupRecord> records) {
-        List<GroupData> result = new ArrayList<>();
-        for (var record : records) {
-            result.add(convertGroup(record));
-        }
-        return result;
+        return records.stream().map(HibernateHelper::convertGroup).collect(Collectors.toList());
+//        List<GroupData> result = new ArrayList<>();
+//        for (var record : records) {
+//            result.add(convertGroup(record));
+//        }
+//        return result;
     }
 
     private static GroupData convertGroup(GroupRecord record) {
@@ -60,11 +62,12 @@ public class HibernateHelper extends HelperBase {
     }
 
     static List<ContactData> convertContactList(List<ContactRecord> records) {
-        List<ContactData> result = new ArrayList<>();
-        for (var record : records) {
-            result.add(convertContact(record));
-        }
-        return result;
+        return records.stream().map(HibernateHelper::convertContact).collect(Collectors.toList());
+//        List<ContactData> result = new ArrayList<>();
+//        for (var record : records) {
+//            result.add(convertContact(record));
+//        }
+//        return result;
     }
 
     private static ContactData convertContact(ContactRecord record) {
