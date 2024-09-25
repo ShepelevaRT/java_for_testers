@@ -53,6 +53,12 @@ public class ContactRecord {
     @Column(name = "email")
     public String email;
 
+    @Column(name = "email2")
+    public String email2;
+
+    @Column(name = "email3")
+    public String email3;
+
     @Column(name = "homepage")
     public String homepage;
 
@@ -74,13 +80,10 @@ public class ContactRecord {
     @Column(name = "ayear")
     public String ayear;
 
-    public String email2 = "";
-    public String email3 = "";
-
     public ContactRecord() {
     }
 
-    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String photo, String title, String company, String address, String home, String mobile, String work, String phone2, String email, String homepage, int bday, String bmonth, String byear, int aday, String amonth, String ayear) {
+    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String photo, String title, String company, String address, String home, String mobile, String work, String phone2, String email, String email2, String email3, String homepage, int bday, String bmonth, String byear, int aday, String amonth, String ayear) {
 
         this.id = id;
         this.firstname = firstname;
@@ -96,6 +99,8 @@ public class ContactRecord {
         this.work = work;
         this.phone2 = phone2;
         this.email = email;
+        this.email2 = email2;
+        this.email3 = email3;
         this.homepage = homepage;
         this.bday = bday;
         this.bmonth = bmonth;
