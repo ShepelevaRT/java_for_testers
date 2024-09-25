@@ -151,6 +151,9 @@ public class ContactCreationTest extends TestBase {
                 .withCompany("")
                 .withAddress("")
                 .withHome("")
+                .withMobile("")
+                .withWork("")
+                .withPhone2("")
                 .withEmail("")
                 .withHomepage("")
                 .withBday("1")
@@ -191,9 +194,7 @@ public class ContactCreationTest extends TestBase {
         app.contacts().createContact(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
         var maxId = newRelated.get(newRelated.size() - 1).id();
-
         var expectedList = new ArrayList<>(oldRelated);
-
         expectedList.add(contact.withId(maxId));
         Assertions.assertEquals(newRelated, expectedList);
     }
@@ -208,8 +209,6 @@ public class ContactCreationTest extends TestBase {
         }
         var group = app.groups().getList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
-        System.out.println("oldRelated " + oldRelated);
-
         if (oldRelated.isEmpty()) {
             var contact = new ContactData()
                     .withFirstname(CommonFunctions.randomString(10))
@@ -222,7 +221,6 @@ public class ContactCreationTest extends TestBase {
         var index = rnd.nextInt(oldRelated.size());
         app.contacts().removeContactFromGroup(oldRelated.get(index), group);
         var newRelated = app.hbm().getContactsInGroup(group);
-        System.out.println("newRelated " + newRelated);
         var expectedList = new ArrayList<>(oldRelated);
         expectedList.remove(index);
         Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
@@ -261,15 +259,10 @@ public class ContactCreationTest extends TestBase {
         var allContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(allContacts.size());
-
         app.contacts().addContactToGroup(allContacts.get(index), group);
         var newRelated = app.hbm().getContactsInGroup(group);
-
         var expectedList = new ArrayList<>(oldRelated);
-
         expectedList.add(allContacts.get(index));
-
-
         Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
     }
 }

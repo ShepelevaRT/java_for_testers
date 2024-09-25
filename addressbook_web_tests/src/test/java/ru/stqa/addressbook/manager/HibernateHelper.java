@@ -8,7 +8,6 @@ import ru.stqa.addressbook.manager.hbm.GroupRecord;
 import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.GroupData;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,7 +74,27 @@ public class HibernateHelper extends HelperBase {
         if (photo != null) {
             photo = "src/test/resources/images/avatar.png";
         }
-        return new ContactData("" + record.id, record.firstname, record.middlename, record.lastname, record.nickname, photo, record.title, record.company, record.address, record.home, record.email, record.homepage, "" + record.bday, record.bmonth, record.byear, "" + record.aday, record.amonth, record.ayear);
+        return new ContactData("" + record.id,
+                record.firstname,
+                record.middlename,
+                record.lastname,
+                record.nickname,
+                photo,
+                record.title,
+                record.company,
+                record.address,
+                record.home,
+                record.mobile,
+                record.work,
+                record.phone2,
+                record.email,
+                record.homepage,
+                "" + record.bday,
+                record.bmonth,
+                record.byear,
+                "" + record.aday,
+                record.amonth,
+                record.ayear);
     }
 
     private static ContactRecord convertContact(ContactData data) {
@@ -91,7 +110,27 @@ public class HibernateHelper extends HelperBase {
         if ("".equals(aday)) {
             aday = "1";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.nickname(), data.photo(), data.title(), data.company(), data.address(), data.home(), data.email(), data.homepage(), Integer.parseInt(bday), data.bmonth(), data.byear(), Integer.parseInt(aday), data.amonth(), data.ayear());
+        return new ContactRecord(Integer.parseInt(id),
+                data.firstname(),
+                data.middlename(),
+                data.lastname(),
+                data.nickname(),
+                data.photo(),
+                data.title(),
+                data.company(),
+                data.address(),
+                data.home(),
+                data.mobile(),
+                data.work(),
+                data.phone2(),
+                data.email(),
+                data.homepage(),
+                Integer.parseInt(bday),
+                data.bmonth(),
+                data.byear(),
+                Integer.parseInt(aday),
+                data.amonth(),
+                data.ayear());
     }
 
     public long getGroupCount() {

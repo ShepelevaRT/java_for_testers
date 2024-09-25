@@ -1,7 +1,9 @@
 package ru.stqa.addressbook.model;
 
-public record ContactData(String id, String firstname, String middlename, String lastname, String nickname, String photo, String title,
-                          String company, String address, String home, String email, String homepage, String bday,
+public record ContactData(String id, String firstname, String middlename, String lastname, String nickname,
+                          String photo, String title,
+                          String company, String address, String home, String mobile, String work, String phone2,
+                          String email, String homepage, String bday,
                           String bmonth, String byear, String aday, String amonth, String ayear) {
 
     public ContactData() {
@@ -17,6 +19,9 @@ public record ContactData(String id, String firstname, String middlename, String
                 "",
                 "",
                 "",
+                "",
+                "",
+                "",
                 "1",
                 "-",
                 "",
@@ -24,6 +29,7 @@ public record ContactData(String id, String firstname, String middlename, String
                 "-",
                 "");
     }
+    //contact.mobile(), contact.work(), contact.secondary()
 
     public ContactData withId(String id) {
         return new ContactData(id,
@@ -36,14 +42,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withFirstname(String firstname) {
@@ -57,14 +63,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withLastname(String lastname) {
@@ -78,14 +84,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withAddress(String address) {
@@ -99,14 +105,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withEmail(String email) {
@@ -120,14 +126,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withHome(String home) {
@@ -141,14 +147,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withMiddlename(String middlename) {
@@ -162,14 +168,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withNickname(String nickname) {
@@ -183,14 +189,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withTitle(String title) {
@@ -204,14 +210,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withCompany(String company) {
@@ -225,14 +231,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withHomepage(String homepage) {
@@ -246,14 +252,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withBday(String bday) {
@@ -267,14 +273,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withAday(String aday) {
@@ -288,14 +294,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                aday,
-                this.amonth,
-                this.ayear);
+                this.byear, aday, this.amonth, this.ayear);
     }
 
     public ContactData withBmonth(String bmonth) {
@@ -309,14 +315,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withAmonth(String amonth) {
@@ -330,14 +336,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                amonth,
-                this.ayear);
+                this.byear, this.aday, amonth, this.ayear);
     }
 
     public ContactData withByear(String byear) {
@@ -351,14 +357,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                byear, this.aday, this.amonth, this.ayear);
     }
 
     public ContactData withAyear(String ayear) {
@@ -372,14 +378,14 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                ayear);
+                this.byear, this.aday, this.amonth, ayear);
     }
 
     public ContactData withPhoto(String photo) {
@@ -393,13 +399,74 @@ public record ContactData(String id, String firstname, String middlename, String
                 this.company,
                 this.address,
                 this.home,
+                this.mobile,
+                this.work,
+                this.phone2,
                 this.email,
                 this.homepage,
                 this.bday,
                 this.bmonth,
-                this.byear,
-                this.aday,
-                this.amonth,
-                this.ayear);
+                this.byear, this.aday, this.amonth, this.ayear);
+    }
+
+    public ContactData withMobile(String mobile) {
+        return new ContactData(this.id,
+                this.firstname,
+                this.middlename,
+                this.lastname,
+                this.nickname,
+                this.photo,
+                this.title,
+                this.company,
+                this.address,
+                this.home,
+                mobile,
+                this.work,
+                this.phone2,
+                this.email,
+                this.homepage,
+                this.bday,
+                this.bmonth,
+                this.byear, this.aday, this.amonth, this.ayear);
+    }
+    public ContactData withWork(String work) {
+        return new ContactData(this.id,
+                this.firstname,
+                this.middlename,
+                this.lastname,
+                this.nickname,
+                this.photo,
+                this.title,
+                this.company,
+                this.address,
+                this.home,
+                this.mobile,
+                work,
+                this.phone2,
+                this.email,
+                this.homepage,
+                this.bday,
+                this.bmonth,
+                this.byear, this.aday, this.amonth, this.ayear);
+    }
+    public ContactData withPhone2(String phone2) {
+        return new ContactData(this.id,
+                this.firstname,
+                this.middlename,
+                this.lastname,
+                this.nickname,
+                this.photo,
+                this.title,
+                this.company,
+                this.address,
+                this.home,
+                this.mobile,
+                this.work,
+                phone2,
+                this.email,
+                this.homepage,
+                this.bday,
+                this.bmonth,
+                this.byear, this.aday, this.amonth, this.ayear);
     }
 }
