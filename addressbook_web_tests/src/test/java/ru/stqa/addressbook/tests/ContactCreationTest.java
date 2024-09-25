@@ -206,7 +206,6 @@ public class ContactCreationTest extends TestBase {
         var group = app.groups().getList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
         if (oldRelated.isEmpty()) {
-            System.out.println("null");
             var contact = new ContactData()
                     .withFirstname(CommonFunctions.randomString(10))
                     .withLastname(CommonFunctions.randomString(10))
@@ -220,6 +219,51 @@ public class ContactCreationTest extends TestBase {
         var newRelated = app.hbm().getContactsInGroup(group);
         var expectedList = new ArrayList<>(oldRelated);
         expectedList.remove(index);
+        Assertions.assertEquals(newRelated, expectedList);
+    }
+
+    @Test
+    void canAddContactToGroup() {
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group_name", "group_header", "group_footer"));
+        }
+        var group = app.groups().getList().get(0);
+        System.out.println("group " + group);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        System.out.println("oldRelated " + oldRelated);
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().createContact(new ContactData()
+                    .withFirstname(CommonFunctions.randomString(5))
+                    .withMiddlename(CommonFunctions.randomString(5))
+                    .withLastname(CommonFunctions.randomString(5))
+                    .withNickname(CommonFunctions.randomString(5))
+                    .withPhoto("src/test/resources/images/avatar.png")
+                    .withTitle(CommonFunctions.randomString(5))
+                    .withCompany(CommonFunctions.randomString( 5))
+                    .withAddress(CommonFunctions.randomString( 5))
+                    .withHome(CommonFunctions.randomString( 5))
+                    .withEmail(CommonFunctions.randomString(5))
+                    .withHomepage(CommonFunctions.randomString( 5))
+                    .withBday(CommonFunctions.randomIntDay())
+                    .withBmonth(CommonFunctions.randomIntMonth())
+                    .withByear(CommonFunctions.randomIntYear())
+                    .withAday(CommonFunctions.randomIntDay())
+                    .withAmonth(CommonFunctions.randomIntMonth())
+                    .withAyear(CommonFunctions.randomIntYear()));
+        }
+        var allContacts = app.hbm().getContactList();
+        System.out.println("allContacts " + allContacts);
+        var rnd = new Random();
+        var index = rnd.nextInt(allContacts.size());
+        System.out.println("index " + index);
+        app.contacts().addContactToGroup(allContacts.get(index), group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        System.out.println("newRelated " + newRelated);
+        var expectedList = new ArrayList<>(oldRelated);
+        if (!oldRelated.equals(newRelated)) {
+            expectedList.add(allContacts.get(index));
+        }
+        System.out.println("expectedList " + expectedList);
         Assertions.assertEquals(newRelated, expectedList);
     }
 }
