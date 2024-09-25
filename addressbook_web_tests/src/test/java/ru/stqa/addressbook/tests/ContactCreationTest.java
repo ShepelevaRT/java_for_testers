@@ -237,9 +237,7 @@ public class ContactCreationTest extends TestBase {
                     .withFooter(CommonFunctions.randomString(10)));
         }
         var group = app.groups().getList().get(0);
-
         var oldRelated = app.hbm().getContactsInGroup(group);
-
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData()
                     .withFirstname(CommonFunctions.randomString(5))
@@ -261,7 +259,6 @@ public class ContactCreationTest extends TestBase {
                     .withAyear(CommonFunctions.randomIntYear()));
         }
         var allContacts = app.hbm().getContactList();
-
         var rnd = new Random();
         var index = rnd.nextInt(allContacts.size());
 
