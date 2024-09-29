@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ru.stqa.addressbook.model.GroupData;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,10 @@ public class ContactHelper extends HelperBase {
     private void selectGroup(GroupData group) {
         new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
     }
+
+//    public void contactWithoutGroup() {
+//        new Select(manager.driver.findElement(By.name("group"))).selectByValue("[none]");
+//    }
 
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         returnToContactPage();
@@ -171,18 +176,18 @@ public class ContactHelper extends HelperBase {
         returnToContactPage();
 //        var contacts = new ArrayList<ContactData>();
         var main_locators = manager.driver.findElements(By.cssSelector("tr:not(:first-child)"));
-return main_locators.stream()
-        .map(locator -> {
-            var lastname = locator.findElement(By.cssSelector("td:nth-child(2)")).getText();
-            var firstname = locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
-            var checkbox_locator = locator.findElement(By.name("selected[]"));
-            var id = checkbox_locator.getAttribute("value");
-            return new ContactData()
-                    .withId(id)
-                    .withFirstname(firstname)
-                    .withLastname(lastname);
-        })
-        .collect(Collectors.toList());
+        return main_locators.stream()
+                .map(locator -> {
+                    var lastname = locator.findElement(By.cssSelector("td:nth-child(2)")).getText();
+                    var firstname = locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
+                    var checkbox_locator = locator.findElement(By.name("selected[]"));
+                    var id = checkbox_locator.getAttribute("value");
+                    return new ContactData()
+                            .withId(id)
+                            .withFirstname(firstname)
+                            .withLastname(lastname);
+                })
+                .collect(Collectors.toList());
 //        for (var locator : main_locators) {
 //            var lastname = locator.findElement(By.cssSelector("td:nth-child(2)")).getText();
 //            var firstname = locator.findElement(By.cssSelector("td:nth-child(3)")).getText();
@@ -246,4 +251,6 @@ return main_locators.stream()
                 .filter(s -> s != null && !"".equals(s))
                 .collect(Collectors.joining("\n"));
     }
+
+
 }
