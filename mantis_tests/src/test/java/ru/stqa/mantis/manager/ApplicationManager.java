@@ -18,7 +18,9 @@ public class ApplicationManager {
 
     private HttpSessionHelper httpSessionHelper;
 
-    private JamesCliHelper JamesCliHelper;
+    private JamesCliHelper jamesCliHelper;
+
+    private MailHelper mailHelper;
 
 
     public void init(String browser, Properties properties) {
@@ -62,9 +64,16 @@ public class ApplicationManager {
     }
 
     public JamesCliHelper jamesCli() {
-        if (JamesCliHelper == null) {
-            JamesCliHelper = new JamesCliHelper(this);
+        if (jamesCliHelper == null) {
+            jamesCliHelper = new JamesCliHelper(this);
         }
-        return JamesCliHelper;
+        return jamesCliHelper;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
     }
 }
