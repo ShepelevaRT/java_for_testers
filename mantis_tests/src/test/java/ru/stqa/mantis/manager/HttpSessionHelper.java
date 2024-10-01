@@ -50,7 +50,7 @@ public class HttpSessionHelper extends HelperBase {
         }
     }
 
-    public void signUp() {
+    public void loginPage() {
         Request request = new Request.Builder()
                 .url(String.format("%s/login.php", manager.property("web.baseUrl")))
                 .build();

@@ -1,6 +1,5 @@
 package ru.stqa.mantis.tests;
 
-import jdk.jshell.execution.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.stqa.mantis.common.CommonFunctions;
@@ -15,12 +14,10 @@ public class UserRegistrationTests extends TestBase {
         var password = "password";
         var username = CommonFunctions.randomString(5);
         app.jamesCli().addUser(email, password);
-        app.http().signUp();
+        app.http().loginPage();
         app.user().signUp(username, email);
         var messages = app.mail().receive(email, password, Duration.ofSeconds(60));
-        System.out.println("messages " + messages);
         var url = app.mail().extractUrl(messages);
-        System.out.println("url " + url);
         app.user().editAccount((String) url, username, password);
         app.http().login(username, password);
         Assertions.assertTrue(app.http().isLoggedIn());

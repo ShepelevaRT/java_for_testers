@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.Random;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -58,5 +59,15 @@ public class CommonFunctions {
         int number = (int) (rnd.nextInt(63) + 1960);
         String result = String.valueOf(number);
         return result;
+    }
+
+    public static String extractUrl(String message) {
+        var pattern = Pattern.compile("http://\\S*");
+        var matcher = pattern.matcher(message);
+        var url = "";
+        if (matcher.find()) {
+            url = message.substring(matcher.start(), matcher.end());
+        }
+        return url;
     }
 }
