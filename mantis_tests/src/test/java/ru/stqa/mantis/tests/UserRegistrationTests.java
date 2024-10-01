@@ -33,6 +33,7 @@ public class UserRegistrationTests extends TestBase {
         // проверка, что пользователь может залогиниться (HttpSessionHelper)
     }
 
+    //тест deleteUser нужен исключительно для отладки, что бы удалять нагенеренные адреса на почтовом сервере James
     @Test
     void deleteUser() {
         var users = app.jamesCli().getListUsers();
