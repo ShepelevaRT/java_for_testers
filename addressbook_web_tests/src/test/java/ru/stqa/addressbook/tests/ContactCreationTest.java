@@ -2,6 +2,7 @@ package ru.stqa.addressbook.tests;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -155,6 +156,8 @@ public class ContactCreationTest extends TestBase {
                 .withWork("")
                 .withPhone2("")
                 .withEmail("")
+                .withEmail2("")
+                .withEmail3("")
                 .withHomepage("")
                 .withBday("1")
                 .withBmonth("-")
@@ -201,12 +204,14 @@ public class ContactCreationTest extends TestBase {
 
     @Test
     void canRemoveContactFromGroup() {
-        if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData()
-                    .withName(CommonFunctions.randomString(10))
-                    .withHeader(CommonFunctions.randomString(10))
-                    .withFooter(CommonFunctions.randomString(10)));
-        }
+        Allure.step("Checking precondition", step -> {
+            if (app.hbm().getGroupCount() == 0) {
+                app.hbm().createGroup(new GroupData()
+                        .withName(CommonFunctions.randomString(10))
+                        .withHeader(CommonFunctions.randomString(10))
+                        .withFooter(CommonFunctions.randomString(10)));
+            }
+        });
         var group = app.groups().getList().get(0);
         var oldRelated = app.hbm().getContactsInGroup(group);
         if (oldRelated.isEmpty()) {
@@ -223,13 +228,14 @@ public class ContactCreationTest extends TestBase {
         var newRelated = app.hbm().getContactsInGroup(group);
         var expectedList = new ArrayList<>(oldRelated);
         expectedList.remove(index);
-        Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+        Allure.step("Validating results", step -> {
+            Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+        });
     }
 
     @Test
     void canAddExistContactToGroup() {
         var indicator = 0; //переменная индикатор
-
         if (app.hbm().getGroupCount() == 0) { //если групп нет, то создаем новую группу
             app.hbm().createGroup(new GroupData()
                     .withName(CommonFunctions.randomString(10))
@@ -306,6 +312,6 @@ public class ContactCreationTest extends TestBase {
             newRelated = app.hbm().getContactsInGroup(first_group);
             expectedList.add(newContact);
         }
-            Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+        Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
     }
 }
