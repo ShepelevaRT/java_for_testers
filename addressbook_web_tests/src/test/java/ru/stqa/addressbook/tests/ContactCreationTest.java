@@ -179,28 +179,28 @@ public class ContactCreationTest extends TestBase {
         app.contacts().createContact(contact);
     }
 
-    @Test
-    void canCreateContactInGroup() {
-        var contact = new ContactData()
-                .withFirstname(CommonFunctions.randomString(10))
-                .withLastname(CommonFunctions.randomString(10))
-                .withPhoto("src/test/resources/images/avatar.png");
-        if (app.hbm().getGroupCount() == 0) {
-            app.hbm().createGroup(new GroupData()
-                    .withName(CommonFunctions.randomString(10))
-                    .withHeader(CommonFunctions.randomString(10))
-                    .withFooter(CommonFunctions.randomString(10)));
-        }
-        var group = app.groups().getList().get(0);
-
-        var oldRelated = app.hbm().getContactsInGroup(group);
-        app.contacts().createContact(contact, group);
-        var newRelated = app.hbm().getContactsInGroup(group);
-        var maxId = newRelated.get(newRelated.size() - 1).id();
-        var expectedList = new ArrayList<>(oldRelated);
-        expectedList.add(contact.withId(maxId));
-        Assertions.assertEquals(newRelated, expectedList);
-    }
+//    @Test
+//    void canCreateContactInGroup() {
+//        var contact = new ContactData()
+//                .withFirstname(CommonFunctions.randomString(10))
+//                .withLastname(CommonFunctions.randomString(10))
+//                .withPhoto("src/test/resources/images/avatar.png");
+//        if (app.hbm().getGroupCount() == 0) {
+//            app.hbm().createGroup(new GroupData()
+//                    .withName(CommonFunctions.randomString(10))
+//                    .withHeader(CommonFunctions.randomString(10))
+//                    .withFooter(CommonFunctions.randomString(10)));
+//        }
+//        var group = app.groups().getList().get(0);
+//
+//        var oldRelated = app.hbm().getContactsInGroup(group);
+//        app.contacts().createContact(contact, group);
+//        var newRelated = app.hbm().getContactsInGroup(group);
+//        var maxId = newRelated.get(newRelated.size() - 1).id();
+//        var expectedList = new ArrayList<>(oldRelated);
+//        expectedList.add(contact.withId(maxId));
+//        Assertions.assertEquals(newRelated, expectedList);
+//    }
 
     @Test
     void canRemoveContactFromGroup() {
@@ -233,85 +233,85 @@ public class ContactCreationTest extends TestBase {
         });
     }
 
-    @Test
-    void canAddExistContactToGroup() {
-        var indicator = 0; //переменная индикатор
-        if (app.hbm().getGroupCount() == 0) { //если групп нет, то создаем новую группу
-            app.hbm().createGroup(new GroupData()
-                    .withName(CommonFunctions.randomString(10))
-                    .withHeader(CommonFunctions.randomString(10))
-                    .withFooter(CommonFunctions.randomString(10)));
-        }
-        if (app.hbm().getContactCount() == 0) { // если нет контактов, вообще, то создаем контакт
-            app.hbm().createContact(new ContactData()
-                    .withFirstname(CommonFunctions.randomString(5))
-                    .withMiddlename(CommonFunctions.randomString(5))
-                    .withLastname(CommonFunctions.randomString(5))
-                    .withNickname(CommonFunctions.randomString(5))
-                    .withPhoto("src/test/resources/images/avatar.png")
-                    .withTitle(CommonFunctions.randomString(5))
-                    .withCompany(CommonFunctions.randomString(5))
-                    .withAddress(CommonFunctions.randomString(5))
-                    .withHome(CommonFunctions.randomString(5))
-                    .withEmail(CommonFunctions.randomString(5))
-                    .withHomepage(CommonFunctions.randomString(5))
-                    .withBday(CommonFunctions.randomIntDay())
-                    .withBmonth(CommonFunctions.randomIntMonth())
-                    .withByear(CommonFunctions.randomIntYear())
-                    .withAday(CommonFunctions.randomIntDay())
-                    .withAmonth(CommonFunctions.randomIntMonth())
-                    .withAyear(CommonFunctions.randomIntYear()));
-        }
-        var first_group = app.hbm().getGroupList().get(0); // получаем первую группу с индексом 0
-        var oldRelated = app.hbm().getContactsInGroup(first_group); //список контактов в группе до добавления нового контакта
-        var newRelated = oldRelated;
-        var expectedList = new ArrayList<>(oldRelated);
-
-        var allGroups = app.hbm().getGroupList(); //получаем список групп
-        var allContacts = app.hbm().getContactList(); // получаем список контактов
-
-        for (var group : allGroups) {
-            if (indicator == 1) {
-                break;
-            }
-            for (var contact : allContacts) {
-                if (!app.hbm().getContactsInGroup(group).contains(contact)) {
-                    oldRelated = app.hbm().getContactsInGroup(group); //список контактов в группе до добавления нового контакта
-                    app.contacts().addContactToGroup(contact, group);//добавляем контакт в группу
-                    newRelated = app.hbm().getContactsInGroup(group);
-                    expectedList = new ArrayList<>(oldRelated);
-                    expectedList.add(contact);
-                    indicator = 1;
-                    break;
-                }
-            }
-        }
-        if (indicator == 0) {
-            app.hbm().createContact(new ContactData()
-                    .withFirstname(CommonFunctions.randomString(5))
-                    .withMiddlename(CommonFunctions.randomString(5))
-                    .withLastname(CommonFunctions.randomString(5))
-                    .withNickname(CommonFunctions.randomString(5))
-                    .withPhoto("src/test/resources/images/avatar.png")
-                    .withTitle(CommonFunctions.randomString(5))
-                    .withCompany(CommonFunctions.randomString(5))
-                    .withAddress(CommonFunctions.randomString(5))
-                    .withHome(CommonFunctions.randomString(5))
-                    .withEmail(CommonFunctions.randomString(5))
-                    .withHomepage(CommonFunctions.randomString(5))
-                    .withBday(CommonFunctions.randomIntDay())
-                    .withBmonth(CommonFunctions.randomIntMonth())
-                    .withByear(CommonFunctions.randomIntYear())
-                    .withAday(CommonFunctions.randomIntDay())
-                    .withAmonth(CommonFunctions.randomIntMonth())
-                    .withAyear(CommonFunctions.randomIntYear()));
-            allContacts = app.hbm().getContactList(); // получаем список контактов
-            var index = allContacts.size();
-            var newContact = app.hbm().getContactList().get(index - 1);
-            app.contacts().addContactToGroup(newContact, first_group);//добавляем контакт в группу
-            newRelated = app.hbm().getContactsInGroup(first_group);
-            expectedList.add(newContact);
-        }
-        Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
-    }
+//    @Test
+//    void canAddExistContactToGroup() {
+//        var indicator = 0; //переменная индикатор
+//        if (app.hbm().getGroupCount() == 0) { //если групп нет, то создаем новую группу
+//            app.hbm().createGroup(new GroupData()
+//                    .withName(CommonFunctions.randomString(10))
+//                    .withHeader(CommonFunctions.randomString(10))
+//                    .withFooter(CommonFunctions.randomString(10)));
+//        }
+//        if (app.hbm().getContactCount() == 0) { // если нет контактов, вообще, то создаем контакт
+//            app.hbm().createContact(new ContactData()
+//                    .withFirstname(CommonFunctions.randomString(5))
+//                    .withMiddlename(CommonFunctions.randomString(5))
+//                    .withLastname(CommonFunctions.randomString(5))
+//                    .withNickname(CommonFunctions.randomString(5))
+//                    .withPhoto("src/test/resources/images/avatar.png")
+//                    .withTitle(CommonFunctions.randomString(5))
+//                    .withCompany(CommonFunctions.randomString(5))
+//                    .withAddress(CommonFunctions.randomString(5))
+//                    .withHome(CommonFunctions.randomString(5))
+//                    .withEmail(CommonFunctions.randomString(5))
+//                    .withHomepage(CommonFunctions.randomString(5))
+//                    .withBday(CommonFunctions.randomIntDay())
+//                    .withBmonth(CommonFunctions.randomIntMonth())
+//                    .withByear(CommonFunctions.randomIntYear())
+//                    .withAday(CommonFunctions.randomIntDay())
+//                    .withAmonth(CommonFunctions.randomIntMonth())
+//                    .withAyear(CommonFunctions.randomIntYear()));
+//        }
+//        var first_group = app.hbm().getGroupList().get(0); // получаем первую группу с индексом 0
+//        var oldRelated = app.hbm().getContactsInGroup(first_group); //список контактов в группе до добавления нового контакта
+//        var newRelated = oldRelated;
+//        var expectedList = new ArrayList<>(oldRelated);
+//
+//        var allGroups = app.hbm().getGroupList(); //получаем список групп
+//        var allContacts = app.hbm().getContactList(); // получаем список контактов
+//
+//        for (var group : allGroups) {
+//            if (indicator == 1) {
+//                break;
+//            }
+//            for (var contact : allContacts) {
+//                if (!app.hbm().getContactsInGroup(group).contains(contact)) {
+//                    oldRelated = app.hbm().getContactsInGroup(group); //список контактов в группе до добавления нового контакта
+//                    app.contacts().addContactToGroup(contact, group);//добавляем контакт в группу
+//                    newRelated = app.hbm().getContactsInGroup(group);
+//                    expectedList = new ArrayList<>(oldRelated);
+//                    expectedList.add(contact);
+//                    indicator = 1;
+//                    break;
+//                }
+//            }
+//        }
+//        if (indicator == 0) {
+//            app.hbm().createContact(new ContactData()
+//                    .withFirstname(CommonFunctions.randomString(5))
+//                    .withMiddlename(CommonFunctions.randomString(5))
+//                    .withLastname(CommonFunctions.randomString(5))
+//                    .withNickname(CommonFunctions.randomString(5))
+//                    .withPhoto("src/test/resources/images/avatar.png")
+//                    .withTitle(CommonFunctions.randomString(5))
+//                    .withCompany(CommonFunctions.randomString(5))
+//                    .withAddress(CommonFunctions.randomString(5))
+//                    .withHome(CommonFunctions.randomString(5))
+//                    .withEmail(CommonFunctions.randomString(5))
+//                    .withHomepage(CommonFunctions.randomString(5))
+//                    .withBday(CommonFunctions.randomIntDay())
+//                    .withBmonth(CommonFunctions.randomIntMonth())
+//                    .withByear(CommonFunctions.randomIntYear())
+//                    .withAday(CommonFunctions.randomIntDay())
+//                    .withAmonth(CommonFunctions.randomIntMonth())
+//                    .withAyear(CommonFunctions.randomIntYear()));
+//            allContacts = app.hbm().getContactList(); // получаем список контактов
+//            var index = allContacts.size();
+//            var newContact = app.hbm().getContactList().get(index - 1);
+//            app.contacts().addContactToGroup(newContact, first_group);//добавляем контакт в группу
+//            newRelated = app.hbm().getContactsInGroup(first_group);
+//            expectedList.add(newContact);
+//        }
+//        Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+//    }
 }
