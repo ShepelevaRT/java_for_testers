@@ -21,6 +21,7 @@ public class UserCreationTests extends TestBase {
         var password = "password";
         user = app.developerMail().addUser();
         var email = String.format("%s@developermail.com", user.name());
+        //здесь применяю метод по созданию пользователя
         app.rest().createUser(new UserData()
                 .withUsername(user.name())
                 .withEmail(email));

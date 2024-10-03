@@ -41,6 +41,7 @@ public class RestApiHelper extends HelperBase {
         }
     }
 
+//метод по созданию пользователя с использованием res api
     public void createUser(UserData userData) {
         User user = new User();
         user.setUsername(userData.name());

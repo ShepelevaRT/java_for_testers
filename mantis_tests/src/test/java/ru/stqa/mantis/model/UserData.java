@@ -1,5 +1,5 @@
 package ru.stqa.mantis.model;
-
+// рекорд для пользователя, которого создадим
 public record UserData(String name, String email) {
 
     public UserData() {
