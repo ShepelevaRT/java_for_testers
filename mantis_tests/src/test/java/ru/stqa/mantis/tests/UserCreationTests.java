@@ -18,7 +18,7 @@ public class UserCreationTests extends TestBase {
 
     @Test
     void canCreateUser() {
-        //Тест регистрирует новый адрес на почтовом сервере James, используя REST API.
+        //Тест регистрирует новый адрес на почтовом сервере DeveloperMail, используя REST API.
         user = app.developerMail().addUser();
         var email = String.format("%s@developermail.com", user.name());
         var password = "password";
