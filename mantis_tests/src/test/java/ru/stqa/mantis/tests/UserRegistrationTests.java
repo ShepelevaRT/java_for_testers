@@ -13,13 +13,17 @@ public class UserRegistrationTests extends TestBase {
         var email = String.format("%s@localhost", CommonFunctions.randomString(8));
         var password = "password";
         var username = CommonFunctions.randomString(5);
+        //Тест регистрирует новый адрес на почтовом сервере James.
         app.jamesCli().addUser(email, password);
+        //Пользователь с главной страницы начинает регистрацию.
         app.http().loginPage();
         app.user().signUp(username, email);
+        //Mantis отправляет письмо на указанный адрес, тест должен получить это письмо, извлечь из него ссылку для подтверждения, пройти по этой ссылке и завершить регистрацию.
         var messages = app.mail().receive(email, password, Duration.ofSeconds(60));
         var url = app.mail().extractUrl(messages);
         app.user().editAccount((String) url, username, password);
         app.http().login(username, password);
+        //Затем тест должен проверить, что пользователь может войти в систему с новым паролем. Этот шаг можно выполнить на уровне протокола HTTP
         Assertions.assertTrue(app.http().isLoggedIn());
 
         // создать пользователя (адрес) на почтовом сервере (JamesHelper)
