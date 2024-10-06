@@ -46,13 +46,14 @@ public class UserRegistrationTests extends TestBase {
         app.jamesCli().removeUser(username);
     }
 
+    //Задание №19: Реализовать альтернативный сценарий регистрации нового пользователя в MantisBT
     @Test
     void canRegistrationUserWithRestApi() {
         var email = String.format("%s@localhost", CommonFunctions.randomString(8));
         var password = "password";
         var username = CommonFunctions.randomString(5);
-        //Тест регистрирует новый адрес на почтовом сервере James.
-        app.jamesCli().addUser(email, password);
+        //Тест регистрирует новый адрес на почтовом сервере James, используя REST API.
+        app.jamesApi().addUser(email, password);
         //Сценарий начинает регистрацию нового пользователя в Mantis, используя REST API.
         app.rest().createUser(new UserData()
                 .withUsername(username)
